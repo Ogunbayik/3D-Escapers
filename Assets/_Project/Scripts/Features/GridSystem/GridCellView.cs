@@ -13,6 +13,8 @@ public class GridCellView : MonoBehaviour
     [SerializeField] private Color _safeColor;
     [SerializeField] private Color _lethalColor;
     [SerializeField] private Color _goalColor;
+
+    public GridCell Cell => _cell;
     private void Awake() => _meshRenderer = GetComponentInChildren<MeshRenderer>();
     private void OnDisable()
     {
