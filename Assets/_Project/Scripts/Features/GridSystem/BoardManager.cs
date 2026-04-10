@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
+    [Header("Visual Settings")]
     [SerializeField] private GridCellView _gridPrefab;
-
-    [SerializeField] private int _width;
-    [SerializeField] private int _height;
-    [SerializeField] private float _gridScale;
-
+    [Header("Data Settings")]
+    [SerializeField] private BoardData _data;
     private GridCell[,] _allCells;
     void Start()
     {
@@ -17,19 +15,19 @@ public class BoardManager : MonoBehaviour
     }
     private void SetupBoard()
     {
-        _allCells = new GridCell[_width, _height];
+        _allCells = new GridCell[_data.Width, _data.Height];
 
-        for (int i = 0; i < _width; i++)
+        for (int i = 0; i < _data.Width; i++)
         {
-            for (int j = 0; j < _height; j++)
+            for (int j = 0; j < _data.Height; j++)
             {
                 GridCell cell = new GridCell(i, j, CellType.Switchable);
-                cell.SetCellColor(ColorType.Lethal);
+                cell.SetCellColor(ColorType.Safe);
 
                 _allCells[i, j] = cell;
 
                 var grid = Instantiate(_gridPrefab);
-                var scale = new Vector3(_gridScale, _gridScale,_gridScale);
+                var scale = new Vector3(_data.Scale, _data.Scale, _data.Scale);
                 var spawnPosition = new Vector3(i, 0f, j);
 
                 grid.Initialize(cell, scale, spawnPosition);
@@ -47,8 +45,8 @@ public class BoardManager : MonoBehaviour
     }
     public GridCell GetRandomCell()
     {
-        var randomWidth = Random.Range(0, _width);
-        var randomHeight = Random.Range(0, _height);
+        var randomWidth = Random.Range(0, _data.Width);
+        var randomHeight = Random.Range(0, _data.Height);
 
         var testCell = _allCells[randomWidth, randomHeight];
         return testCell;
