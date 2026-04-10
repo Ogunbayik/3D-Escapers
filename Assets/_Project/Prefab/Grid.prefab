@@ -128,4 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0adbf72eab8894a468eebf190156940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridVisual: {fileID: 283002455828611597}
+  _cellVisual: {fileID: 283002455828611597}
+  _safeColor: {r: 0.4660377, g: 1, b: 0.51850796, a: 1}
+  _lethalColor: {r: 1, g: 0.1641509, b: 0.17681526, a: 1}
+  _goalColor: {r: 0.5992567, g: 0.5943396, b: 1, a: 1}
