@@ -13,11 +13,15 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private GridCellView _gridPrefab;
     [Header("Data Settings")]
     [SerializeField] private BoardData _data;
+
     private GridCell[,] _allCells;
 
+    //TODO Level için gereklilikler
     private float _nextLethalDuration = 0.5f;
     private int _maxGroupIndex = 7;
     private int _groupIndex = 0;
+
+    private bool _isSequenceActive = false;
     void Start() => SetupBoard();
     private void SetupBoard()
     {
@@ -39,14 +43,18 @@ public class BoardManager : MonoBehaviour
                 grid.Initialize(cell, scale, spawnPosition);
             }
         }
+
+        CreateGoalCell();
     }
-    private async UniTask LethalCellSequence()
+    private async UniTask StartLethalSequence()
     {
-        ClearLethalCells();
-
-        await UniTask.Delay(TimeSpan.FromSeconds(_nextLethalDuration));
-
-        SetNextLethalGroup();
+        while (_isSequenceActive)
+        {
+            ClearLethalCells();
+            await UniTask.Delay(TimeSpan.FromSeconds(_nextLethalDuration));
+            SetNextLethalGroup();
+            await UniTask.Delay(TimeSpan.FromSeconds(_nextLethalDuration));
+        }
     }
     public void ClearLethalCells()
     {
@@ -54,7 +62,10 @@ public class BoardManager : MonoBehaviour
             return;
 
         foreach (var cell in _cells)
-            cell.SetCellColor(ColorType.Safe);
+        {
+            if (cell.CellType == CellType.Switchable)
+                cell.SetCellColor(ColorType.Safe);
+        }
     }
     public void SetNextLethalGroup()
     {
@@ -76,7 +87,10 @@ public class BoardManager : MonoBehaviour
     private void ChangeLethalCellColor()
     {
         foreach (var cell in _cells)
-            cell.SetCellColor(ColorType.Lethal);
+        {
+            if (cell.CellType != CellType.Locked)
+                cell.SetCellColor(ColorType.Lethal);
+        }
     }
     private void IncreaseGroupIndex()
     {
@@ -89,16 +103,25 @@ public class BoardManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            LethalCellSequence().Forget();
+            _isSequenceActive = true;
+            StartLethalSequence().Forget();
         }
+    }
+    private void CreateGoalCell()
+    {
+        var cell = GetRandomCell();
+
+        cell.SetCellType(CellType.Locked);
+        cell.SetCellColor(ColorType.Goal);
     }
     public GridCell GetRandomCell()
     {
+        //This is for Goal Cell
         var randomWidth = UnityEngine.Random.Range(0, _data.Width);
         var randomHeight = UnityEngine.Random.Range(0, _data.Height);
 
-        var testCell = _allCells[randomWidth, randomHeight];
-        return testCell;
+        var cell = _allCells[randomWidth, randomHeight];
+        return cell;
     }
 }
 
