@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 1139995234}
   - component: {fileID: 1139995233}
   - component: {fileID: 1139995232}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,6 +724,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1608462821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1608462822}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1608462822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608462821}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3119862508508678175}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3119862508508678168
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +766,7 @@ GameObject:
   - component: {fileID: 3119862508508678175}
   - component: {fileID: 3119862508508678177}
   - component: {fileID: 3119862508508678176}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,6 +787,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5952095500753561527}
+  - {fileID: 1608462822}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3119862508508678176
@@ -770,9 +802,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9159c3f54ff0c3c4288b73d007a988dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerVisual: {fileID: 5952095500753561527}
   _movementSpeed: 5
   _rotationSpeed: 3
-  _playerVisual: {fileID: 5952095500753561527}
+  _jumpHeight: 3
+  _gravity: -9.81
+  _gravityMultiplier: 3
+  _checkTransform: {fileID: 1608462822}
+  _checkDistance: 0.15
+  _checkLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!143 &3119862508508678177
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2417,7 +2457,7 @@ Transform:
   m_GameObject: {fileID: 5952095500753337239}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
