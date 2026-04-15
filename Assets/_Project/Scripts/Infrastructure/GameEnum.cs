@@ -1,11 +1,11 @@
 
 
-public enum CellType
+public enum GridType
 {
     Switchable,
     Locked
 }
-public enum ColorType
+public enum GridStatus
 {
     Safe,
     Lethal,

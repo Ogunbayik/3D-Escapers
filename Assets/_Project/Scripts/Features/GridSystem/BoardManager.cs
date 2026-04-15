@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
+using Zenject;
 
 public class BoardManager : MonoBehaviour
 {
+    private SignalBus _signalBus;
+
     public List<CellGroup> _lethalCells = new List<CellGroup>();
     public List<GridCell> _cells = new List<GridCell>();
 
@@ -17,11 +20,14 @@ public class BoardManager : MonoBehaviour
     private GridCell[,] _allCells;
 
     //TODO Level için gereklilikler
-    private float _nextLethalDuration = 0.5f;
+    private float _nextLethalDuration = 1f;
     private int _maxGroupIndex = 7;
     private int _groupIndex = 0;
 
     private bool _isSequenceActive = false;
+
+    [Inject]
+    public void Construct(SignalBus signalBus) => _signalBus = signalBus;
     void Start() => SetupBoard();
     private void SetupBoard()
     {
@@ -31,8 +37,9 @@ public class BoardManager : MonoBehaviour
         {
             for (int j = 0; j < _data.Height; j++)
             {
-                GridCell cell = new GridCell(i, j, CellType.Switchable);
-                cell.SetCellColor(ColorType.Safe);
+                GridCell cell = new GridCell(i, j, GridType.Switchable, GridStatus.Safe);
+                //cell.SetCellColor(ColorType.Safe);
+                cell.SetGridStatus(GridStatus.Safe);
 
                 _allCells[i, j] = cell;
 
@@ -40,7 +47,8 @@ public class BoardManager : MonoBehaviour
                 var scale = new Vector3(_data.Scale, _data.Scale, _data.Scale);
                 var spawnPosition = new Vector3(i, 0f, j);
 
-                grid.Initialize(cell, scale, spawnPosition);
+                grid.name = $"Grid[{i},{j}]";
+                grid.Configure(cell, scale, spawnPosition);
             }
         }
 
@@ -63,8 +71,8 @@ public class BoardManager : MonoBehaviour
 
         foreach (var cell in _cells)
         {
-            if (cell.CellType == CellType.Switchable)
-                cell.SetCellColor(ColorType.Safe);
+            if (cell.CellType == GridType.Switchable)
+                cell.SetGridStatus(GridStatus.Safe);
         }
     }
     public void SetNextLethalGroup()
@@ -88,9 +96,11 @@ public class BoardManager : MonoBehaviour
     {
         foreach (var cell in _cells)
         {
-            if (cell.CellType != CellType.Locked)
-                cell.SetCellColor(ColorType.Lethal);
+            if (cell.CellType != GridType.Locked)
+                cell.SetGridStatus(GridStatus.Lethal);
         }
+
+        _signalBus.Fire(new GameSignal.OnGridColorChanged());
     }
     private void IncreaseGroupIndex()
     {
@@ -101,7 +111,7 @@ public class BoardManager : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(1))
         {
             _isSequenceActive = true;
             StartLethalSequence().Forget();
@@ -111,8 +121,8 @@ public class BoardManager : MonoBehaviour
     {
         var cell = GetRandomCell();
 
-        cell.SetCellType(CellType.Locked);
-        cell.SetCellColor(ColorType.Goal);
+        cell.SetCellType(GridType.Locked);
+        cell.SetGridStatus(GridStatus.Goal);
     }
     public GridCell GetRandomCell()
     {
@@ -123,6 +133,8 @@ public class BoardManager : MonoBehaviour
         var cell = _allCells[randomWidth, randomHeight];
         return cell;
     }
+
+    public void Test() => Debug.Log("Changed!");
 }
 
 [System.Serializable]
