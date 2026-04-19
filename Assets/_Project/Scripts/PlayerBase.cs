@@ -9,20 +9,14 @@ public class PlayerBase : MonoBehaviour
 
     private CharacterController _characterController;
 
-    [Header("Visual")]
+    [Header("Visual Settings")]
     [SerializeField] private Transform _playerVisual;
-    [Header("Movement")]
-    [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _rotationSpeed;
-    [Header("Jump")]
-    [SerializeField] private float _jumpHeight;
-    [SerializeField] private float _gravity;
-    [SerializeField] private float _gravityMultiplier;
-    [Header("Checking")]
     [SerializeField] private Transform _checkTransform;
-    [SerializeField] private float _checkDistance;
+    [Header("Layer Settings")]
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private LayerMask _gridLayer;
+    [Header("Data Settings")]
+    [SerializeField] private PlayerData _data;
 
 
     private Collider[] _results = new Collider[5];
@@ -54,17 +48,17 @@ public class PlayerBase : MonoBehaviour
         CheckGrid();
 
         if (PressedJump() && IsGround())
-            _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+            _velocity.y = Mathf.Sqrt(_data.JumpHeight * -2f * _data.Gravity);
 
         HandleMovement();
         HandleRotation();
 
-        _velocity.y += _gravity * _gravityMultiplier * Time.deltaTime;
+        _velocity.y += _data.Gravity * _data.GravityMultiplier * Time.deltaTime;
         _characterController.Move(_velocity * Time.deltaTime);
     }
     private void CheckGrid()
     {
-        int gridCount = Physics.OverlapSphereNonAlloc(_checkTransform.position, _checkDistance, _results, _gridLayer);
+        int gridCount = Physics.OverlapSphereNonAlloc(_checkTransform.position, _data.CheckDistance, _results, _gridLayer);
 
         if(gridCount > 0)
         {
@@ -90,7 +84,7 @@ public class PlayerBase : MonoBehaviour
             _movementDirection.Normalize();
 
         if (IsMoving())
-            _characterController.Move(_movementDirection * _movementSpeed * Time.deltaTime);
+            _characterController.Move(_movementDirection * _data.MovementSpeed * Time.deltaTime);
     }
 
     private void HandleRotation()
@@ -98,10 +92,10 @@ public class PlayerBase : MonoBehaviour
         if (IsMoving())
         {
             var rotation = Quaternion.LookRotation(_movementDirection);
-            _playerVisual.transform.rotation = Quaternion.Slerp(_playerVisual.transform.rotation, rotation, _rotationSpeed * Time.deltaTime);
+            _playerVisual.transform.rotation = Quaternion.Slerp(_playerVisual.transform.rotation, rotation, _data.RotationSpeed * Time.deltaTime);
         }
     }
-    private bool IsGround() => Physics.CheckSphere(_checkTransform.position, _checkDistance, _groundLayer);
+    private bool IsGround() => Physics.CheckSphere(_checkTransform.position, _data.CheckDistance, _groundLayer);
     private bool PressedJump() => Input.GetKeyDown(KeyCode.Space);
     private bool IsMoving() => _movementDirection != Vector3.zero;
     private void CheckPlayerGridStatus()
@@ -130,6 +124,6 @@ public class PlayerBase : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireSphere(_checkTransform.transform.position, _checkDistance);
+        Gizmos.DrawWireSphere(_checkTransform.transform.position, _data.CheckDistance);
     }
 }

@@ -945,19 +945,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerVisual: {fileID: 5952095500753561527}
-  _movementSpeed: 5
-  _rotationSpeed: 3
-  _jumpHeight: 3
-  _gravity: -9.81
-  _gravityMultiplier: 3
   _checkTransform: {fileID: 1608462822}
-  _checkDistance: 0.15
   _groundLayer:
     serializedVersion: 2
     m_Bits: 192
   _gridLayer:
     serializedVersion: 2
     m_Bits: 128
+  _data: {fileID: 11400000, guid: c36e242a8d2347b449e82188154a4500, type: 2}
 --- !u!143 &3119862508508678177
 CharacterController:
   m_ObjectHideFlags: 0
