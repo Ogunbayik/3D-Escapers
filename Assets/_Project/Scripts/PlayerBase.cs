@@ -5,7 +5,7 @@ using Zenject;
 
 public class PlayerBase : MonoBehaviour
 {
-    public SignalBus _signalBus;
+    private SignalBus _signalBus;
 
     private CharacterController _characterController;
 
@@ -24,7 +24,6 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private LayerMask _gridLayer;
 
-    private GridCell _grid = null;
 
     private Collider[] _results = new Collider[5];
 
@@ -32,11 +31,23 @@ public class PlayerBase : MonoBehaviour
 
     private Vector3 _velocity;
 
+    private GridCell _grid = null;
+
     [Inject]
     public void Construct(SignalBus signalBus) => _signalBus = signalBus;
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
+    }
+    private void OnEnable()
+    {
+        _signalBus.Subscribe<GameSignal.OnGridChanged>(CheckPlayerGridStatus);
+        _signalBus.Subscribe<GameSignal.OnGridColorChanged>(CheckPlayerGridStatus);
+    }
+    private void OnDisable()
+    {
+        _signalBus.Unsubscribe<GameSignal.OnGridChanged>(CheckPlayerGridStatus);
+        _signalBus.Unsubscribe<GameSignal.OnGridColorChanged>(CheckPlayerGridStatus);
     }
     void Update()
     {
@@ -50,7 +61,6 @@ public class PlayerBase : MonoBehaviour
 
         _velocity.y += _gravity * _gravityMultiplier * Time.deltaTime;
         _characterController.Move(_velocity * Time.deltaTime);
-
     }
     private void CheckGrid()
     {
@@ -59,10 +69,7 @@ public class PlayerBase : MonoBehaviour
         if(gridCount > 0)
         {
             if (_results[0].TryGetComponent<GridCellView>(out GridCellView newGrid))
-            {
                 SetGrid(newGrid.Grid);
-                Debug.Log($"Player on the {newGrid.name}");
-            }
         }
     }
     private void SetGrid(GridCell newGrid)
@@ -70,7 +77,7 @@ public class PlayerBase : MonoBehaviour
         if (_grid == newGrid) return;
 
         _grid = newGrid;
-        //_signalBus.Fire(new GameSignal.OnGridChanged(newGrid));
+        _signalBus.Fire(new GameSignal.OnGridChanged());
     }
     private void HandleMovement()
     {
@@ -97,7 +104,28 @@ public class PlayerBase : MonoBehaviour
     private bool IsGround() => Physics.CheckSphere(_checkTransform.position, _checkDistance, _groundLayer);
     private bool PressedJump() => Input.GetKeyDown(KeyCode.Space);
     private bool IsMoving() => _movementDirection != Vector3.zero;
+    private void CheckPlayerGridStatus()
+    {
+        if (_grid == null || _grid.GridStatus == GridStatus.Safe) return;
 
+
+        switch (_grid.GridStatus)
+        {
+            case GridStatus.Goal:
+                //TODO Player point is increased!
+                Debug.Log("Player gain point!");
+                break;
+            case GridStatus.Lethal:
+                //TODO Player health is decreased!
+                Debug.Log("Player health is deacreased!");
+                break;
+            default:
+                Debug.LogWarning("Unknown Grid Status detected!");
+                break;
+        }
+
+        _signalBus.Fire(new GameSignal.OnPlayerGridStatus(_grid.GridStatus));
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

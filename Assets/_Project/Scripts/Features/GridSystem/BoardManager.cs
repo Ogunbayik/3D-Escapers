@@ -133,8 +133,6 @@ public class BoardManager : MonoBehaviour
         var cell = _allCells[randomWidth, randomHeight];
         return cell;
     }
-
-    public void Test() => Debug.Log("Changed!");
 }
 
 [System.Serializable]

@@ -3,9 +3,10 @@
 public static class GameSignal 
 {
     public class OnGridColorChanged { }
-    public class OnGridChanged
+    public class OnGridChanged { }
+    public class OnPlayerGridStatus
     {
-        public GridCell Grid;
-        public OnGridChanged(GridCell newGrid) => Grid = newGrid;
+        public GridStatus GridStatus;
+        public OnPlayerGridStatus(GridStatus gridStatus) => GridStatus = gridStatus;
     }
 }

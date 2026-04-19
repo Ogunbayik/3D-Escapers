@@ -10,9 +10,7 @@ public class SignalInstaller : MonoInstaller
 
         SignalBusInstaller.Install(Container);
         Container.DeclareSignal<GameSignal.OnGridColorChanged>();
-
-        Container.BindSignal<GameSignal.OnGridColorChanged>()
-            .ToMethod<BoardManager>(x => x.Test)
-            .FromResolve();
+        Container.DeclareSignal<GameSignal.OnGridChanged>();
+        Container.DeclareSignal<GameSignal.OnPlayerGridStatus>();
     }
 }
