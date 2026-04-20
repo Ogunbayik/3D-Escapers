@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
+using System.Linq;
 using Zenject;
 
 public class BoardManager : MonoBehaviour
 {
     private SignalBus _signalBus;
 
-    public List<CellGroup> _lethalCells = new List<CellGroup>();
-    public List<GridCell> _cells = new List<GridCell>();
+    public List<CellGroup> _lethalGroups = new List<CellGroup>();
+    public List<GridCell> _lethalGrids = new List<GridCell>();
 
     [Header("Visual Settings")]
     [SerializeField] private GridCellView _gridPrefab;
     [Header("Data Settings")]
     [SerializeField] private BoardData _data;
 
-    private GridCell[,] _allCells;
+    private GridCell[,] _allGrid;
+
+    private GridCell _goalGrid;
 
     //TODO Level için gereklilikler
     private float _nextLethalDuration = 1f;
@@ -29,19 +32,31 @@ public class BoardManager : MonoBehaviour
     [Inject]
     public void Construct(SignalBus signalBus) => _signalBus = signalBus;
     void Start() => SetupBoard();
+    private void OnEnable()
+    {
+        _signalBus.Subscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusReached);
+    }
+    private void OnDisable()
+    {
+        _signalBus.Unsubscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusReached);
+    }
+    private void OnPlayerGridStatusReached(GameSignal.OnPlayerGridStatus signal)
+    {
+        if (signal.GridStatus == GridStatus.Goal)
+            StartGoalSequence().Forget();
+    }
     private void SetupBoard()
     {
-        _allCells = new GridCell[_data.Width, _data.Height];
+        _allGrid = new GridCell[_data.Width, _data.Height];
 
         for (int i = 0; i < _data.Width; i++)
         {
             for (int j = 0; j < _data.Height; j++)
             {
                 GridCell cell = new GridCell(i, j, GridType.Switchable, GridStatus.Safe);
-                //cell.SetCellColor(ColorType.Safe);
                 cell.SetGridStatus(GridStatus.Safe);
 
-                _allCells[i, j] = cell;
+                _allGrid[i, j] = cell;
 
                 var grid = Instantiate(_gridPrefab);
                 var scale = new Vector3(_data.Scale, _data.Scale, _data.Scale);
@@ -52,7 +67,7 @@ public class BoardManager : MonoBehaviour
             }
         }
 
-        CreateGoalCell();
+        InitialGoalGrid();
     }
     private async UniTask StartLethalSequence()
     {
@@ -64,12 +79,22 @@ public class BoardManager : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(_nextLethalDuration));
         }
     }
+    private async UniTask StartGoalSequence()
+    {
+        float goalDuration = 0.5f;
+
+        ResetGoalGrid();
+        await UniTask.Delay(TimeSpan.FromSeconds(goalDuration));
+        CreateNewGoalGrid();
+        await UniTask.Delay(TimeSpan.FromSeconds(goalDuration));
+        Debug.Log("After 0.5 second to created!");
+    }
     public void ClearLethalCells()
     {
-        if (_cells.Count == 0)
+        if (_lethalGrids.Count == 0)
             return;
 
-        foreach (var cell in _cells)
+        foreach (var cell in _lethalGrids)
         {
             if (cell.CellType == GridType.Switchable)
                 cell.SetGridStatus(GridStatus.Safe);
@@ -77,15 +102,15 @@ public class BoardManager : MonoBehaviour
     }
     public void SetNextLethalGroup()
     {
-        _cells.Clear();
+        _lethalGrids.Clear();
 
         //TODO System changing for level
-        foreach (var cell in _lethalCells)
+        foreach (var cell in _lethalGroups)
         {
             if (cell.GroupID == _groupIndex)
             {
                 foreach (var coordinate in cell.Coordinates)
-                    _cells.Add(_allCells[coordinate.Width, coordinate.Height]);
+                    _lethalGrids.Add(_allGrid[coordinate.Width, coordinate.Height]);
             }
         }
 
@@ -94,7 +119,7 @@ public class BoardManager : MonoBehaviour
     }
     private void ChangeLethalCellColor()
     {
-        foreach (var cell in _cells)
+        foreach (var cell in _lethalGrids)
         {
             if (cell.CellType != GridType.Locked)
                 cell.SetGridStatus(GridStatus.Lethal);
@@ -117,21 +142,50 @@ public class BoardManager : MonoBehaviour
             StartLethalSequence().Forget();
         }
     }
-    private void CreateGoalCell()
+    public void InitialGoalGrid()
     {
-        var cell = GetRandomCell();
-
-        cell.SetCellType(GridType.Locked);
-        cell.SetGridStatus(GridStatus.Goal);
+        //TODO Using this method when the game started!
+        _goalGrid = GetRandomGrid();
+        ActivateGoalGrid();
     }
-    public GridCell GetRandomCell()
+    public void CreateNewGoalGrid()
+    {
+        _goalGrid = GetDifferentGoalGrid();
+        ActivateGoalGrid();
+    }
+    public void ActivateGoalGrid()
+    {
+        _goalGrid.SetCellType(GridType.Locked);
+        _goalGrid.SetGridStatus(GridStatus.Goal);
+    }
+    public void ResetGoalGrid()
+    {
+        _goalGrid.SetCellType(GridType.Switchable);
+        _goalGrid.SetGridStatus(GridStatus.Safe);
+    }
+    public GridCell GetDifferentGoalGrid()
+    {
+        GridCell newGrid;
+        int totalAttempt = 0;
+        int maxAttempt = 100;
+
+        do
+        {
+            newGrid = GetRandomGrid();
+            totalAttempt++;
+        }
+        while (newGrid.Height == _goalGrid.Height && newGrid.Width == _goalGrid.Width && totalAttempt < maxAttempt);
+
+        return newGrid;
+    }
+    public GridCell GetRandomGrid()
     {
         //This is for Goal Cell
         var randomWidth = UnityEngine.Random.Range(0, _data.Width);
         var randomHeight = UnityEngine.Random.Range(0, _data.Height);
 
-        var cell = _allCells[randomWidth, randomHeight];
-        return cell;
+        var grid = _allGrid[randomWidth, randomHeight];
+        return grid;
     }
 }
 

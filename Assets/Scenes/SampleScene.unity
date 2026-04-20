@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc7a5d2b5f88504e80948d9d81f7c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lethalCells:
+  _lethalGroups:
   - GroupID: 0
     Coordinates:
     - Width: 0
