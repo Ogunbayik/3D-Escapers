@@ -15,3 +15,4 @@ MonoBehaviour:
   _width: 8
   _height: 8
   _scale: 0.47
+  _lethalDuration: 0.5

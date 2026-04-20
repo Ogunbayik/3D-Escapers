@@ -50,11 +50,16 @@ public class PlayerBase : MonoBehaviour
         if (PressedJump() && IsGround())
             _velocity.y = Mathf.Sqrt(_data.JumpHeight * -2f * _data.Gravity);
 
+        if (!IsGround())
+            _grid = null;
+
         HandleMovement();
         HandleRotation();
 
         _velocity.y += _data.Gravity * _data.GravityMultiplier * Time.deltaTime;
         _characterController.Move(_velocity * Time.deltaTime);
+
+        Debug.Log(_grid);
     }
     private void CheckGrid()
     {

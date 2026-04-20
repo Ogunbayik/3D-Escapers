@@ -9,4 +9,10 @@ public static class GameSignal
         public GridStatus GridStatus;
         public OnPlayerGridStatus(GridStatus gridStatus) => GridStatus = gridStatus;
     }
+    public class OnGameScoreChanged
+    {
+        public int CurrentScore;
+        public OnGameScoreChanged(int currentScore) => CurrentScore = currentScore;
+    }
+    public class OnGameLevelPassed { }
 }

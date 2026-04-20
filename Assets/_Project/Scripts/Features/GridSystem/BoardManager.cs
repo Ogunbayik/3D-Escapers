@@ -8,6 +8,7 @@ using Zenject;
 
 public class BoardManager : MonoBehaviour
 {
+    private ScoreManager _scoreManager;
     private SignalBus _signalBus;
 
     public List<CellGroup> _lethalGroups = new List<CellGroup>();
@@ -30,7 +31,11 @@ public class BoardManager : MonoBehaviour
     private bool _isSequenceActive = false;
 
     [Inject]
-    public void Construct(SignalBus signalBus) => _signalBus = signalBus;
+    public void Construct(SignalBus signalBus, ScoreManager scoreManager)
+    {
+        _signalBus = signalBus;
+        _scoreManager = scoreManager;
+    }
     void Start() => SetupBoard();
     private void OnEnable()
     {
@@ -74,20 +79,22 @@ public class BoardManager : MonoBehaviour
         while (_isSequenceActive)
         {
             ClearLethalCells();
-            await UniTask.Delay(TimeSpan.FromSeconds(_nextLethalDuration));
             SetNextLethalGroup();
-            await UniTask.Delay(TimeSpan.FromSeconds(_nextLethalDuration));
+            await UniTask.Delay(TimeSpan.FromSeconds(_data.LethalDuration));
         }
     }
     private async UniTask StartGoalSequence()
     {
+        float reachDuration = 0.4f;
         float goalDuration = 0.5f;
+        int testScore = 10;
 
         ResetGoalGrid();
-        await UniTask.Delay(TimeSpan.FromSeconds(goalDuration));
+        //TODO Some effect for reach
+        await UniTask.Delay(TimeSpan.FromSeconds(reachDuration));
+        _scoreManager.IncreaseScore(testScore);
         CreateNewGoalGrid();
         await UniTask.Delay(TimeSpan.FromSeconds(goalDuration));
-        Debug.Log("After 0.5 second to created!");
     }
     public void ClearLethalCells()
     {
