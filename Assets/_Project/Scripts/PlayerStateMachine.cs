@@ -20,7 +20,7 @@ public class PlayerStateMachine : IInitializable, ITickable
 
         SwitchState<PlayerIdleState>();
     }
-    public void Tick() => _currentState.Tick();
+    public void Tick() => _currentState?.Tick();
     public void SwitchState<T>() where T : IState
     {
         _currentState?.ExitState();

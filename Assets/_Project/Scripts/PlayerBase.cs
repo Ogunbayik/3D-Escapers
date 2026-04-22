@@ -21,9 +21,12 @@ public class PlayerBase : MonoBehaviour
     private Collider[] _results = new Collider[5];
 
     private Vector3 _movementDirection;
-    private Vector3 _velocity;
+    private float _velocityY;
+    public float VelocityY => _velocityY;
 
     private GridCell _grid = null;
+
+    public bool TEST_GROUND = true;
 
     [Inject]
     public void Construct(SignalBus signalBus, CharacterController characterController)
@@ -41,23 +44,27 @@ public class PlayerBase : MonoBehaviour
         _signalBus.Unsubscribe<GameSignal.OnGridChanged>(CheckPlayerGridStatus);
         _signalBus.Unsubscribe<GameSignal.OnGridColorChanged>(CheckPlayerGridStatus);
     }
-    void Update()
+    public void Move(Vector3 movementDirection)
     {
-        CheckGrid();
+        if (movementDirection.magnitude > 1f)
+            movementDirection.Normalize();
 
-        if (PressedJump() && IsGround())
-            _velocity.y = Mathf.Sqrt(_data.JumpHeight * -2f * _data.Gravity);
+        Vector3 finalMovement = movementDirection * _data.MovementSpeed;
+        finalMovement.y = _velocityY;
 
-        if (!IsGround())
-            _grid = null;
+        _characterController.Move(finalMovement * Time.deltaTime);
 
-        HandleMovement();
-        HandleRotation();
-
-        _velocity.y += _data.Gravity * _data.GravityMultiplier * Time.deltaTime;
-        _characterController.Move(_velocity * Time.deltaTime);
+        HandleRotation(movementDirection);
     }
-    private void CheckGrid()
+    private void HandleRotation(Vector3 direction)
+    {
+        if (IsMoving())
+        {
+            var rotation = Quaternion.LookRotation(direction);
+            _playerVisual.transform.rotation = Quaternion.Slerp(_playerVisual.transform.rotation, rotation, _data.RotationSpeed * Time.deltaTime);
+        }
+    }
+    public void CheckGrid()
     {
         int gridCount = Physics.OverlapSphereNonAlloc(_checkTransform.position, _data.CheckDistance, _results, _gridLayer);
 
@@ -67,42 +74,16 @@ public class PlayerBase : MonoBehaviour
                 SetGrid(newGrid.Grid);
         }
     }
-    private void SetGrid(GridCell newGrid)
+    public void SetGrid(GridCell newGrid)
     {
         if (_grid == newGrid) return;
 
         _grid = newGrid;
         _signalBus.Fire(new GameSignal.OnGridChanged());
     }
-    private void HandleMovement()
-    {
-        var horizontal = Input.GetAxis("Horizontal");
-        var vertical = Input.GetAxis("Vertical");
-
-        _movementDirection.Set(horizontal, 0f, vertical);
-
-        if (_movementDirection.magnitude > 1f)
-            _movementDirection.Normalize();
-
-        if (IsMoving())
-            _characterController.Move(_movementDirection * _data.MovementSpeed * Time.deltaTime);
-    }
-
-    private void HandleRotation()
-    {
-        if (IsMoving())
-        {
-            var rotation = Quaternion.LookRotation(_movementDirection);
-            _playerVisual.transform.rotation = Quaternion.Slerp(_playerVisual.transform.rotation, rotation, _data.RotationSpeed * Time.deltaTime);
-        }
-    }
-    private bool IsGround() => Physics.CheckSphere(_checkTransform.position, _data.CheckDistance, _groundLayer);
-    private bool PressedJump() => Input.GetKeyDown(KeyCode.Space);
-    private bool IsMoving() => _movementDirection != Vector3.zero;
     private void CheckPlayerGridStatus()
     {
         if (_grid == null || _grid.GridStatus == GridStatus.Safe) return;
-
 
         switch (_grid.GridStatus)
         {
@@ -120,6 +101,30 @@ public class PlayerBase : MonoBehaviour
         }
 
         _signalBus.Fire(new GameSignal.OnPlayerGridStatus(_grid.GridStatus));
+    }
+    public void ApplyGravity()
+    {
+        if (IsGrounded() && _velocityY <= 0)
+            _velocityY = -2f;
+        else
+            _velocityY += Physics.gravity.y * _data.GravityMultiplier * Time.deltaTime;
+    }
+    public void HandleJump() => _velocityY = Mathf.Sqrt(_data.JumpHeight * -2f * Physics.gravity.y);
+    public bool IsMoving()
+    {
+        var direction = GetMovementDirection();
+
+        return direction.magnitude > 0.1f;
+    }
+    public bool IsGrounded() => Physics.CheckSphere(_checkTransform.position, _data.CheckDistance, _groundLayer);
+    public bool PressedJump() => Input.GetKeyDown(KeyCode.Space);
+    public Vector3 GetMovementDirection()
+    {
+        var horizontal = Input.GetAxis("Horizontal");
+        var vertical = Input.GetAxis("Vertical");
+        var direction = new Vector3(horizontal, 0f, vertical);
+
+        return direction;
     }
     private void OnDrawGizmos()
     {

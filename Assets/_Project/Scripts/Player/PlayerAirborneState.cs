@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAirborneState : MonoBehaviour
+public class PlayerAirborneState : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerAirborneState(PlayerBase player) : base(player) { }
+    public override void EnterState()
     {
-        
-    }
+        base.EnterState();
 
-    // Update is called once per frame
-    void Update()
+        Player.HandleJump();
+        Player.SetGrid(null);
+    }
+    public override void ExitState()
     {
-        
+        base.ExitState();
+    }
+    public override void Tick()
+    {
+        var direction = Player.GetMovementDirection();
+
+        Player.ApplyGravity();
+        Player.Move(direction);
+
+        if (Player.IsGrounded() && Player.VelocityY < 0)
+        {
+            StateMachine.SwitchState<PlayerIdleState>();
+            Debug.Log("Player is Idle");
+        }
     }
 }

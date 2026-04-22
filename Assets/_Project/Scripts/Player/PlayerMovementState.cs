@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementState : PlayerGroundState
+public class PlayerMovementState : PlayerGroundedState
 {
     protected PlayerMovementState(PlayerBase player) : base(player) { }
 
     public override void EnterState()
     {
-        Debug.Log("Player is moving");
         base.EnterState();
     }
     public override void ExitState()
@@ -18,5 +17,11 @@ public class PlayerMovementState : PlayerGroundState
     public override void Tick()
     {
         base.Tick();
+
+        if (!Player.IsMoving())
+            StateMachine.SwitchState<PlayerIdleState>();
+
+        var direction = Player.GetMovementDirection();
+        Player.Move(direction);
     }
 }

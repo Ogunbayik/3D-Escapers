@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StandartPlayerData
   m_EditorClassIdentifier: 
   _movementSpeed: 5
-  _rotationSpeed: 3
-  _jumpHeight: 3
+  _rotationSpeed: 5
+  _jumpHeight: 4
   _gravity: -9.81
   _gravityMultiplier: 3
   _checkDistance: 0.15
