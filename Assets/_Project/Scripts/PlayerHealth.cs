@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     private SignalBus _signalBus;
 
-    [SerializeField] private int _maximumHealth;
+    [SerializeField] private PlayerData _data;
 
     private int _currentHealth;
 
@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public void Construct(SignalBus signalBus) => _signalBus = signalBus;
     void Start()
     {
-        _currentHealth = _maximumHealth;
+        _currentHealth = _data.MaximumHealth;
     }
     private void OnEnable() => _signalBus.Subscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusChanged);
     private void OnDisable() => _signalBus.Unsubscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusChanged);

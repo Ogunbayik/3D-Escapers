@@ -18,20 +18,18 @@ public class PlayerBase : MonoBehaviour
     [Header("Data Settings")]
     [SerializeField] private PlayerData _data;
 
-
     private Collider[] _results = new Collider[5];
 
     private Vector3 _movementDirection;
-
     private Vector3 _velocity;
 
     private GridCell _grid = null;
 
     [Inject]
-    public void Construct(SignalBus signalBus) => _signalBus = signalBus;
-    void Start()
+    public void Construct(SignalBus signalBus, CharacterController characterController)
     {
-        _characterController = GetComponent<CharacterController>();
+        _signalBus = signalBus;
+        _characterController = characterController;
     }
     private void OnEnable()
     {
@@ -58,8 +56,6 @@ public class PlayerBase : MonoBehaviour
 
         _velocity.y += _data.Gravity * _data.GravityMultiplier * Time.deltaTime;
         _characterController.Move(_velocity * Time.deltaTime);
-
-        Debug.Log(_grid);
     }
     private void CheckGrid()
     {
