@@ -24,7 +24,6 @@ public class BoardManager : MonoBehaviour
     private GridCell _goalGrid;
 
     //TODO Level için gereklilikler
-    private float _nextLethalDuration = 1f;
     private int _maxGroupIndex = 7;
     private int _groupIndex = 0;
 
