@@ -107,11 +107,11 @@ public class PlayerBase : MonoBehaviour
     public void ApplyGravity()
     {
         if (IsGrounded() && _velocityY <= 0)
-            _velocityY = -2f;
+            _velocityY = GameConst.PhysicsDefaults.GROUNDED_GRAVITY;
         else
             _velocityY += Physics.gravity.y * _data.GravityMultiplier * Time.deltaTime;
     }
-    public void HandleJump() => _velocityY = Mathf.Sqrt(_data.JumpHeight * -2f * Physics.gravity.y);
+    public void HandleJump() => _velocityY = Mathf.Sqrt(_data.JumpHeight * GameConst.PhysicsDefaults.GRAVITY_COEFFICIENT * Physics.gravity.y);
     public bool IsMoving()
     {
         var direction = GetMovementDirection();
