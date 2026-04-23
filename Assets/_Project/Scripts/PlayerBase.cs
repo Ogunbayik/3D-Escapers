@@ -6,6 +6,7 @@ using Zenject;
 public class PlayerBase : MonoBehaviour
 {
     private SignalBus _signalBus;
+    private IInputService _input;
 
     private CharacterController _characterController;
 
@@ -29,10 +30,11 @@ public class PlayerBase : MonoBehaviour
     public bool TEST_GROUND = true;
 
     [Inject]
-    public void Construct(SignalBus signalBus, CharacterController characterController)
+    public void Construct(SignalBus signalBus, CharacterController characterController, IInputService input)
     {
         _signalBus = signalBus;
         _characterController = characterController;
+        _input = input;
     }
     private void OnEnable()
     {
@@ -117,11 +119,11 @@ public class PlayerBase : MonoBehaviour
         return direction.magnitude > 0.1f;
     }
     public bool IsGrounded() => Physics.CheckSphere(_checkTransform.position, _data.CheckDistance, _groundLayer);
-    public bool PressedJump() => Input.GetKeyDown(KeyCode.Space);
+    public bool PressedJump() => _input.PressedJump();
     public Vector3 GetMovementDirection()
     {
-        var horizontal = Input.GetAxis("Horizontal");
-        var vertical = Input.GetAxis("Vertical");
+        var horizontal = _input.GetHorizontal();
+        var vertical = _input.GetVertical();
         var direction = new Vector3(horizontal, 0f, vertical);
 
         return direction;
