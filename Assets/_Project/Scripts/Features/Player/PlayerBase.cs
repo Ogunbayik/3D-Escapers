@@ -21,7 +21,6 @@ public class PlayerBase : MonoBehaviour
 
     private Collider[] _results = new Collider[5];
 
-    private Vector3 _movementDirection;
     private float _velocityY;
     public float VelocityY => _velocityY;
 

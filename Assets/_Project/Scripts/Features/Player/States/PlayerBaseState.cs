@@ -6,8 +6,14 @@ public abstract class PlayerBaseState : IState
 {
     protected PlayerBase Player;
 
+    protected AnimationController AnimationController;
+
     protected PlayerStateMachine StateMachine;
-    public PlayerBaseState(PlayerBase player) => Player = player;
+    public PlayerBaseState(PlayerBase player, AnimationController animationController)
+    {
+        Player = player;
+        AnimationController = animationController;
+    }
     public virtual void EnterState() { }
     public virtual void ExitState() { }
     public abstract void Tick();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerBaseState
 {
-    protected PlayerGroundedState(PlayerBase player) : base(player) { }
+    protected PlayerGroundedState(PlayerBase player, AnimationController animationController) : base(player, animationController) { }
     public override void EnterState() => base.EnterState();
     public override void ExitState() => base.ExitState();
     public override void Tick()

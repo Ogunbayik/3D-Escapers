@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerAirborneState : PlayerBaseState
 {
-    public PlayerAirborneState(PlayerBase player) : base(player) { }
+    public PlayerAirborneState(PlayerBase player, AnimationController animationController) : base(player, animationController) { }
     public override void EnterState()
     {
         base.EnterState();
 
         Player.HandleJump();
         Player.SetGrid(null);
+
+        AnimationController.PlayAnimation(GameConst.PlayerAnimation.JUMP_HASH, GameConst.AnimationDuration.QUICK_TRANSITION);
     }
     public override void ExitState()
     {

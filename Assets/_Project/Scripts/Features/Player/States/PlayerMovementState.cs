@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerMovementState : PlayerGroundedState
 {
-    protected PlayerMovementState(PlayerBase player) : base(player) { }
+    protected PlayerMovementState(PlayerBase player, AnimationController animationController) : base(player, animationController) { }
 
     public override void EnterState()
     {
         base.EnterState();
+
+        AnimationController.PlayAnimation(GameConst.PlayerAnimation.MOVE_HASH, GameConst.AnimationDuration.QUICK_TRANSITION);
     }
     public override void ExitState()
     {
