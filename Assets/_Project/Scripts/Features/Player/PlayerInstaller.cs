@@ -8,10 +8,13 @@ public class PlayerInstaller : MonoInstaller
         //Player Scripts
         Container.Bind<PlayerHealth>().FromComponentOnRoot().AsSingle();
         Container.Bind<PlayerBase>().FromComponentOnRoot().AsSingle();
+        Container.Bind<PlayerVisual>().FromComponentOnRoot().AsSingle();
+        Container.Bind<PlayerHUD>().FromComponentInHierarchy().AsSingle();
 
         //PlayerRequirements
         Container.Bind<CharacterController>().FromComponentOnRoot().AsSingle();
         Container.Bind<Animator>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<SkinnedMeshRenderer>().FromComponentsInHierarchy().AsSingle();
 
         //States
         Container.Bind<IState>().To<PlayerIdleState>().AsSingle();

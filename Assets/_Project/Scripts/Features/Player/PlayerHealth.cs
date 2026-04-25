@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,10 @@ using Zenject;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private PlayerHUD _hud;
+
+    public event Action<int, int> OnHealthChanged;
+
     private SignalBus _signalBus;
 
     [Header("Data References")]
@@ -15,14 +20,19 @@ public class PlayerHealth : MonoBehaviour
     private int _currentHealth;
 
     [Inject]
-    public void Construct(SignalBus signalBus, PlayerStateMachine stateMachine)
+    public void Construct(SignalBus signalBus, PlayerStateMachine stateMachine, PlayerHUD hud)
     { 
         _signalBus = signalBus;
         _stateMachine = stateMachine;
+        _hud = hud;
     }
-    void Start()
+    void Start() => Initialize();
+    private void Initialize()
     {
         _currentHealth = _data.MaximumHealth;
+        var percentage = (float)_currentHealth / _data.MaximumHealth;
+
+        _hud.InitializeHUD(percentage);
     }
     private void OnEnable() => _signalBus.Subscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusChanged);
     private void OnDisable() => _signalBus.Unsubscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusChanged);
@@ -35,12 +45,14 @@ public class PlayerHealth : MonoBehaviour
     {
         _currentHealth--;
 
+        OnHealthChanged?.Invoke(_currentHealth, _data.MaximumHealth);
         Debug.Log($"Player Health: {_currentHealth}");
 
         if (_currentHealth <= 0)
         {
             _stateMachine.OnPlayerHealthDepleted();
 
+            _signalBus.Fire(new GameSignal.OnPlayerDead());
         }
     }
 }

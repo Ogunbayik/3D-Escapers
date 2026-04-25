@@ -5,46 +5,51 @@ using Zenject;
 
 public class PlayerBase : MonoBehaviour
 {
+    private PlayerVisual _visual;
+
     private SignalBus _signalBus;
     private IInputService _input;
 
     private CharacterController _characterController;
 
-    [Header("Visual Settings")]
-    [SerializeField] private Transform _playerVisual;
+    [Header("Visual References")]
     [SerializeField] private Transform _checkTransform;
     [Header("Layer Settings")]
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private LayerMask _gridLayer;
-    [Header("Data Settings")]
+    [Header("Data References")]
     [SerializeField] private PlayerData _data;
 
     private Collider[] _results = new Collider[5];
+    private PlayerState _currentState;
 
     private float _velocityY;
     public float VelocityY => _velocityY;
 
     private GridCell _grid = null;
 
-    public bool TEST_GROUND = true;
-
     [Inject]
-    public void Construct(SignalBus signalBus, CharacterController characterController, IInputService input)
+    public void Construct(PlayerVisual visual,SignalBus signalBus, CharacterController characterController, IInputService input)
     {
+        _visual = visual;
         _signalBus = signalBus;
         _characterController = characterController;
         _input = input;
+        _currentState = PlayerState.Alive;
     }
     private void OnEnable()
     {
         _signalBus.Subscribe<GameSignal.OnGridChanged>(CheckPlayerGridStatus);
         _signalBus.Subscribe<GameSignal.OnGridColorChanged>(CheckPlayerGridStatus);
+        _signalBus.Subscribe<GameSignal.OnPlayerDead>(HandleDead);
     }
     private void OnDisable()
     {
         _signalBus.Unsubscribe<GameSignal.OnGridChanged>(CheckPlayerGridStatus);
         _signalBus.Unsubscribe<GameSignal.OnGridColorChanged>(CheckPlayerGridStatus);
+        _signalBus.Unsubscribe<GameSignal.OnPlayerDead>(HandleDead);
     }
+    public void HandleDead() => SetPlayerState(PlayerState.Dead);
     public void Move(Vector3 movementDirection)
     {
         if (movementDirection.magnitude > 1f)
@@ -62,18 +67,20 @@ public class PlayerBase : MonoBehaviour
         if (IsMoving())
         {
             var rotation = Quaternion.LookRotation(direction);
-            _playerVisual.transform.rotation = Quaternion.Slerp(_playerVisual.transform.rotation, rotation, _data.RotationSpeed * Time.deltaTime);
+            _visual.Body.rotation = Quaternion.Slerp(_visual.Body.rotation, rotation, _data.RotationSpeed * Time.deltaTime);
         }
     }
     public void CheckGrid()
     {
         int gridCount = Physics.OverlapSphereNonAlloc(_checkTransform.position, _data.CheckDistance, _results, _gridLayer);
 
-        if(gridCount > 0)
+        if (gridCount > 0 && IsGrounded())
         {
             if (_results[0].TryGetComponent<GridCellView>(out GridCellView newGrid))
                 SetGrid(newGrid.Grid);
         }
+        else
+            SetGrid(null);
     }
     public void SetGrid(GridCell newGrid)
     {
@@ -84,7 +91,7 @@ public class PlayerBase : MonoBehaviour
     }
     private void CheckPlayerGridStatus()
     {
-        if (_grid == null || _grid.GridStatus == GridStatus.Safe) return;
+        if (_grid == null || _grid.GridStatus == GridStatus.Safe || _currentState != PlayerState.Alive) return;
 
         switch (_grid.GridStatus)
         {
@@ -111,6 +118,20 @@ public class PlayerBase : MonoBehaviour
             _velocityY += Physics.gravity.y * _data.GravityMultiplier * Time.deltaTime;
     }
     public void HandleJump() => _velocityY = Mathf.Sqrt(_data.JumpHeight * GameConst.PhysicsDefaults.GRAVITY_COEFFICIENT * Physics.gravity.y);
+    public void ActivateController()
+    {
+        _characterController.enabled = true;
+    }
+    public void DeactivateController()
+    {
+        _characterController.enabled = false;
+    }
+    public void SetPlayerState(PlayerState newState)
+    {
+        if (_currentState == newState) return;
+
+        _currentState = newState;
+    }
     public bool IsMoving()
     {
         var direction = GetMovementDirection();
