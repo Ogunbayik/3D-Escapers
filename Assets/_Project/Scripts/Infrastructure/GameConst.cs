@@ -14,10 +14,12 @@ public static class GameConst
         public const string PLAYER_IDLE = "Player_Idle_Breathing";
         public const string PLAYER_MOVE = "Player_Move";
         public const string PLAYER_JUMP = "Player_Jump";
+        public const string PLAYER_DEATH = "Player_Death";
 
         public static readonly int IDLE_HASH = Animator.StringToHash(PLAYER_IDLE);
         public static readonly int MOVE_HASH = Animator.StringToHash(PLAYER_MOVE);
         public static readonly int JUMP_HASH = Animator.StringToHash(PLAYER_JUMP);
+        public static readonly int DEATH_HASH = Animator.StringToHash(PLAYER_DEATH);
     }
     public class AnimationDuration
     {

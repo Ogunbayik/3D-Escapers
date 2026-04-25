@@ -7,12 +7,19 @@ public class PlayerHealth : MonoBehaviour
 {
     private SignalBus _signalBus;
 
+    [Header("Data References")]
     [SerializeField] private PlayerData _data;
+
+    private PlayerStateMachine _stateMachine;
 
     private int _currentHealth;
 
     [Inject]
-    public void Construct(SignalBus signalBus) => _signalBus = signalBus;
+    public void Construct(SignalBus signalBus, PlayerStateMachine stateMachine)
+    { 
+        _signalBus = signalBus;
+        _stateMachine = stateMachine;
+    }
     void Start()
     {
         _currentHealth = _data.MaximumHealth;
@@ -31,6 +38,9 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log($"Player Health: {_currentHealth}");
 
         if (_currentHealth <= 0)
-            Debug.Log("Player is dead");
+        {
+            _stateMachine.OnPlayerHealthDepleted();
+
+        }
     }
 }

@@ -28,4 +28,5 @@ public class PlayerStateMachine : IInitializable, ITickable
         _currentState = _states.OfType<T>().FirstOrDefault();
         _currentState?.EnterState();
     }
+    public void OnPlayerHealthDepleted() => SwitchState<PlayerDeathState>();
 }
