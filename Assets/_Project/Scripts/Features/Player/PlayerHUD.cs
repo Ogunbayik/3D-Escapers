@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,8 @@ public class PlayerHUD : MonoBehaviour
     [Header("Image References")]
     [SerializeField] private Image _healtFill;
 
+    [SerializeField] private float _decreaseDuration;
+
     [Inject]
     public void Construct(PlayerHealth health) => _health = health;
     private void OnEnable() => _health.OnHealthChanged += Health_OnHealthChanged;
@@ -22,5 +25,5 @@ public class PlayerHUD : MonoBehaviour
         UpdateFillAmount(percentage);
     }
     public void InitializeHUD(float percentage) => UpdateFillAmount(percentage);
-    private void UpdateFillAmount(float percentage) => _healtFill.fillAmount = percentage;
+    private void UpdateFillAmount(float percentage) => _healtFill.DOFillAmount(percentage, _decreaseDuration);
 }
