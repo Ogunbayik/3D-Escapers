@@ -8,9 +8,7 @@ using Zenject;
 
 public class BoardManager : MonoBehaviour
 {
-    public VFXManager _vfxManager;
-
-
+    private VFXManager _VFXManager;
     private ScoreManager _scoreManager;
     private SignalBus _signalBus;
 
@@ -33,10 +31,11 @@ public class BoardManager : MonoBehaviour
     private bool _isSequenceActive = false;
 
     [Inject]
-    public void Construct(SignalBus signalBus, ScoreManager scoreManager)
+    public void Construct(SignalBus signalBus, ScoreManager scoreManager, VFXManager VFXManager)
     {
         _signalBus = signalBus;
         _scoreManager = scoreManager;
+        _VFXManager = VFXManager;
     }
     void Start() => SetupBoard();
     private void OnEnable()
@@ -94,7 +93,7 @@ public class BoardManager : MonoBehaviour
         ResetGoalGrid();
         //TODO Some effect for reach
         var spawnPosition = new Vector3(_goalGrid.Width, 0f, _goalGrid.Height);
-        _vfxManager.PlayGoalEffect(spawnPosition);
+        _VFXManager.PlayGoalEffect(spawnPosition);
         await UniTask.Delay(TimeSpan.FromSeconds(reachDuration));
         _scoreManager.IncreaseScore(testScore);
         CreateNewGoalGrid();
