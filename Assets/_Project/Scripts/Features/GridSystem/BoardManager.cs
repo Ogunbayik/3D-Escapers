@@ -8,6 +8,9 @@ using Zenject;
 
 public class BoardManager : MonoBehaviour
 {
+    public VFXManager _vfxManager;
+
+
     private ScoreManager _scoreManager;
     private SignalBus _signalBus;
 
@@ -90,6 +93,8 @@ public class BoardManager : MonoBehaviour
 
         ResetGoalGrid();
         //TODO Some effect for reach
+        var spawnPosition = new Vector3(_goalGrid.Width, 0f, _goalGrid.Height);
+        _vfxManager.PlayGoalEffect(spawnPosition);
         await UniTask.Delay(TimeSpan.FromSeconds(reachDuration));
         _scoreManager.IncreaseScore(testScore);
         CreateNewGoalGrid();
