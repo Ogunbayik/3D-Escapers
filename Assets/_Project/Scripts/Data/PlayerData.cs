@@ -16,6 +16,8 @@ public class PlayerData : ScriptableObject
     [SerializeField] private float _checkDistance;
     [Header("Health Settings")]
     [SerializeField] private int _maximumHealth;
+    [Header("Duration Settings")]
+    [SerializeField] private float _invulnerableDuration;
 
     public float MovementSpeed => _movementSpeed;
     public float RotationSpeed => _rotationSpeed;
@@ -24,4 +26,5 @@ public class PlayerData : ScriptableObject
     public float GravityMultiplier => _gravityMultiplier;
     public float CheckDistance => _checkDistance;
     public int MaximumHealth => _maximumHealth;
+    public float InvulnerableDuration => _invulnerableDuration;
 }

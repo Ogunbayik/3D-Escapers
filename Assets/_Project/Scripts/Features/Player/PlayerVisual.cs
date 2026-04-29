@@ -29,7 +29,7 @@ public class PlayerVisual : MonoBehaviour
     }
     private void OnEnable() => _health.OnHealthChanged += OnHealthChanged;
     private void OnDisable() => _health.OnHealthChanged -= OnHealthChanged;
-    private void OnHealthChanged(int currentHealth, int maximumHealth)
+    private void OnHealthChanged(float percentage, HealthState healthState)
     {
         _cameraManager.GenerateHitShake();
         OnPlayerColorChanged();

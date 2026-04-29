@@ -31,4 +31,10 @@ public static class GameConst
         public const float GROUNDED_GRAVITY = -2f;
         public const float GRAVITY_COEFFICIENT = -2f;
     }
+    public class HealthPercentage
+    {
+        public const float CRITICAL_PERCENTAGE = 0.25f;
+        public const float UNSTABLE_PERCENTAGE = 0.5f;
+        public const float STABLE_PERCENTAGE = 0.75f;
+    }
 }

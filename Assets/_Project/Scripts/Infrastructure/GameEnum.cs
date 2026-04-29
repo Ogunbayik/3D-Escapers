@@ -11,9 +11,15 @@ public enum GridStatus
     Lethal,
     Goal
 }
-
 public enum PlayerState
 {
     Alive,
     Dead
+}
+public enum HealthState
+{
+    Optimal,
+    Stable,
+    Unstable,
+    Critical
 }
