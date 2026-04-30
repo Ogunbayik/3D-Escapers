@@ -14,6 +14,7 @@ public class BoardManager : MonoBehaviour
 
     public List<CellGroup> _lethalGroups = new List<CellGroup>();
     public List<GridCell> _lethalGrids = new List<GridCell>();
+    public List<GridCell> _allGridList = new List<GridCell>();
 
     [Header("Visual Settings")]
     [SerializeField] private GridCellView _gridPrefab;
@@ -55,20 +56,22 @@ public class BoardManager : MonoBehaviour
     {
         _allGrid = new GridCell[_data.Width, _data.Height];
 
-        for (int i = 0; i < _data.Width; i++)
+        for (int i = 0; i < _data.Height; i++)
         {
-            for (int j = 0; j < _data.Height; j++)
+            for (int j = 0; j < _data.Width; j++)
             {
-                GridCell cell = new GridCell(i, j, GridType.Switchable, GridStatus.Safe);
+                int id = i * _data.Width + j;
+                GridCell cell = new GridCell(id, j, i, GridType.Switchable, GridStatus.Safe);
                 cell.SetGridStatus(GridStatus.Safe);
 
-                _allGrid[i, j] = cell;
+                _allGrid[j,i] = cell;
+                _allGridList.Add(cell);
 
                 var grid = Instantiate(_gridPrefab);
                 var scale = new Vector3(_data.Scale, _data.Scale, _data.Scale);
-                var spawnPosition = new Vector3(i, 0f, j);
+                var spawnPosition = new Vector3(j, 0f, i);
 
-                grid.name = $"Grid[{i},{j}]";
+                grid.name = $"Grid[{j},{i}]";
                 grid.Configure(cell, scale, spawnPosition);
             }
         }
@@ -77,11 +80,13 @@ public class BoardManager : MonoBehaviour
     }
     private async UniTask StartLethalSequence()
     {
+        var token = this.GetCancellationTokenOnDestroy();
+
         while (_isSequenceActive)
         {
             ClearLethalCells();
             SetNextLethalGroup();
-            await UniTask.Delay(TimeSpan.FromSeconds(_data.LethalDuration));
+            await UniTask.Delay(TimeSpan.FromSeconds(_data.LethalDuration), cancellationToken: token);
         }
     }
     private async UniTask StartGoalSequence()
@@ -117,10 +122,18 @@ public class BoardManager : MonoBehaviour
         //TODO System changing for level
         foreach (var cell in _lethalGroups)
         {
+            /*
             if (cell.GroupID == _groupIndex)
             {
                 foreach (var coordinate in cell.Coordinates)
                     _lethalGrids.Add(_allGrid[coordinate.Width, coordinate.Height]);
+            }
+            */
+
+            if(cell.GroupID == _groupIndex)
+            {
+                foreach (var id in cell.CellIDs)
+                    _lethalGrids.Add(_allGridList[id]);
             }
         }
 
@@ -210,5 +223,6 @@ public struct CellCoordinate
 public struct CellGroup
 {
     public int GroupID;
-    public List<CellCoordinate> Coordinates;
+    //public List<CellCoordinate> Coordinates;
+    public List<int> CellIDs;
 }

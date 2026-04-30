@@ -4,13 +4,15 @@ using UnityEngine;
 public class GridCell 
 {
     public event Action<GridStatus> OnGridStatusChanged;
+    public int CellID { get; private set; }
     public int Height { get; private set; }
     public int Width { get; private set; }
     public GridType CellType;
     public GridStatus GridStatus;
 
-    public GridCell(int width, int height, GridType cellType, GridStatus gridStatus)
+    public GridCell(int cellID,int width, int height, GridType cellType, GridStatus gridStatus)
     {
+        CellID = cellID;
         Width = width;
         Height = height;
         CellType = cellType;
@@ -23,6 +25,6 @@ public class GridCell
             return;
 
         GridStatus = newStatus;
-        OnGridStatusChanged(newStatus);
+        OnGridStatusChanged?.Invoke(newStatus);
     }
 }
