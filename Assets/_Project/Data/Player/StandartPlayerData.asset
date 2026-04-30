@@ -18,5 +18,5 @@ MonoBehaviour:
   _gravity: -9.81
   _gravityMultiplier: 3
   _checkDistance: 0.15
-  _maximumHealth: 10
+  _maximumHealth: 5
   _invulnerableDuration: 1.25

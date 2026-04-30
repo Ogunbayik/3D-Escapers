@@ -9,7 +9,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.EnterState();
 
-        AnimationController.PlayAnimation(GameConst.PlayerAnimation.IDLE_HASH, GameConst.AnimationDuration.QUICK_TRANSITION);
+        AnimationController.PlayAnimation(GameConst.PlayerAnimation.IDLE_HASH, GameConst.AnimationTransition.QUICK_TRANSITION);
     }
     public override void Tick()
     {

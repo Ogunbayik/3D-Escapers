@@ -11,7 +11,7 @@ public class PlayerDeathState : PlayerGroundedState
 
         Debug.Log("Player is Dead");
         Player.DeactivateController();
-        AnimationController.PlayAnimation(GameConst.PlayerAnimation.DEATH_HASH, GameConst.AnimationDuration.SMOOTH_TRANSITION);
+        AnimationController.PlayAnimation(GameConst.PlayerAnimation.DEATH_HASH, GameConst.AnimationTransition.SMOOTH_TRANSITION);
 
     }
     public override void ExitState()

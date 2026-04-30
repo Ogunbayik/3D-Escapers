@@ -12,7 +12,7 @@ public class PlayerAirborneState : PlayerBaseState
         Player.HandleJump();
         Player.SetGrid(null);
 
-        AnimationController.PlayAnimation(GameConst.PlayerAnimation.JUMP_HASH, GameConst.AnimationDuration.QUICK_TRANSITION);
+        AnimationController.PlayAnimation(GameConst.PlayerAnimation.JUMP_HASH, GameConst.AnimationTransition.QUICK_TRANSITION);
     }
     public override void ExitState()
     {

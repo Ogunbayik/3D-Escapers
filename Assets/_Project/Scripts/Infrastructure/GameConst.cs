@@ -23,6 +23,10 @@ public static class GameConst
     }
     public class AnimationDuration
     {
+        
+    }
+    public class AnimationTransition
+    {
         public const float QUICK_TRANSITION = 0.1f;
         public const float SMOOTH_TRANSITION = 0.2f;
     }

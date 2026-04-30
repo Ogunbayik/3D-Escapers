@@ -10,7 +10,7 @@ public class PlayerMovementState : PlayerGroundedState
     {
         base.EnterState();
 
-        AnimationController.PlayAnimation(GameConst.PlayerAnimation.MOVE_HASH, GameConst.AnimationDuration.QUICK_TRANSITION);
+        AnimationController.PlayAnimation(GameConst.PlayerAnimation.MOVE_HASH, GameConst.AnimationTransition.QUICK_TRANSITION);
     }
     public override void ExitState()
     {

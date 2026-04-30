@@ -21,8 +21,6 @@ public class PlayerHealth : MonoBehaviour
 
     private int _currentHealth;
 
-    private float _invulnerableTimer;
-
     private bool _isInvulnerable;
 
     [Inject]

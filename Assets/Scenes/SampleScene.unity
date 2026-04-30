@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 318861621}
   m_Layer: 0
-  m_Name: Health
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1910,19 +1910,17 @@ MonoBehaviour:
     Fill: {fileID: 21300000, guid: c0d98eab36a288444ac0da95ef775661, type: 2}
     Base: {fileID: 21300000, guid: f32a68e9b329c7f41a2815fbb2ce7231, type: 2}
     Icon: {fileID: 21300000, guid: 8fb62f4be1adafc4a96adbcddd09e698, type: 2}
-  _optimalFill: {fileID: 21300000, guid: a51042911c3c4424199078975ed8b779, type: 2}
-  _optimalBase: {fileID: 21300000, guid: b258e734f249fdb4fafe40bba17db0c9, type: 2}
-  _optimalIcon: {fileID: 21300000, guid: 53ef3db67a04ea348912efdfcfbb3fbe, type: 2}
-  _stableFill: {fileID: 21300000, guid: 2f95d04222bece84093688b8ac14f271, type: 2}
-  _stableBase: {fileID: 21300000, guid: f56cbf3cd18b00c49a87f23eb9b7fc68, type: 2}
-  _stableIcon: {fileID: 21300000, guid: a86bee8c503b4b44ea2554f9d6470944, type: 2}
-  _unstableFill: {fileID: 21300000, guid: 0e20718cb6c6bd4469f6c82b643bffa2, type: 2}
-  _unstableBase: {fileID: 21300000, guid: 3700a5b72ea2fa248adb38934c8c1a2e, type: 2}
-  _unstableIcon: {fileID: 21300000, guid: 94ec504c08be9144b9bf965d8cec7d1e, type: 2}
-  _criticalFill: {fileID: 21300000, guid: c0d98eab36a288444ac0da95ef775661, type: 2}
-  _criticalBase: {fileID: 21300000, guid: f32a68e9b329c7f41a2815fbb2ce7231, type: 2}
-  _criticalIcon: {fileID: 21300000, guid: 8fb62f4be1adafc4a96adbcddd09e698, type: 2}
   _decreaseDuration: 0.5
+  _fadeDuration: 2
+  _decreaseScale: 2
+  _unstableAnimationData:
+    DecreaseDuration: 0.75
+    IncreaseDuration: 0.75
+    RepeatDuration: 1
+  _criticalAnimationData:
+    DecreaseDuration: 0.4
+    IncreaseDuration: 0.4
+    RepeatDuration: 0.2
 --- !u!1 &1916727785
 GameObject:
   m_ObjectHideFlags: 0
