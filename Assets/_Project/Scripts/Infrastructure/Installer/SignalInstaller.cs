@@ -18,6 +18,8 @@ public class SignalInstaller : MonoInstaller
         Container.DeclareSignal<GameSignal.OnGameScoreChanged>();
         Container.DeclareSignal<GameSignal.OnGameLevelPassed>();
         Container.DeclareSignal<GameSignal.OnPlayerDead>();
+        Container.DeclareSignal<GameSignal.OnLevelStarted>();
+
 
         Container.BindSignal<GameSignal.OnGameScoreChanged>()
             .ToMethod<ScoreUIController>(x => x.UpdateScoreText)

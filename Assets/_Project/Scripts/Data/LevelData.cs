@@ -14,7 +14,7 @@ public class LevelData : ScriptableObject
     [SerializeField] private float _lethalDuration;
     [SerializeField] private int _scorePerGoal;
 
-    [Header("Lethal Groups (Use Cell IDs)")]
+    [Header("Lethal Groups")]
     [SerializeField] private List<CellGroup> _lethalGroups;
 
     public int Width => _width;
@@ -23,4 +23,5 @@ public class LevelData : ScriptableObject
     public float LethalDuration => _lethalDuration;
     public int ScorePerGoal => _scorePerGoal;
     public List<CellGroup> LethalGroups => _lethalGroups;
+    
 }

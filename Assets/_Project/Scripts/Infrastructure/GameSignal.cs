@@ -14,8 +14,14 @@ public static class GameSignal
         public int CurrentScore;
         public OnGameScoreChanged(int currentScore) => CurrentScore = currentScore;
     }
-    public class OnGameLevelPassed { }
 
+    //Level Signals
+    public class OnGameLevelPassed { }
+    public class OnLevelStarted
+    {
+        public LevelData CurrentLevel;
+        public OnLevelStarted(LevelData levelData) => CurrentLevel = levelData;
+    }
 
     //Player Signals
     public class OnPlayerDead { }
