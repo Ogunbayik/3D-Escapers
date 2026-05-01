@@ -223,6 +223,5 @@ public struct CellCoordinate
 public struct CellGroup
 {
     public int GroupID;
-    //public List<CellCoordinate> Coordinates;
     public List<int> CellIDs;
 }
