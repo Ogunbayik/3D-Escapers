@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ccb27cee61f684885e291afefc4e74, type: 3}
   m_Name: ClassicalBoard
   m_EditorClassIdentifier: 
-  _width: 8
-  _height: 8
-  _scale: 0.47
-  _lethalDuration: 0.5
+  _goalEffectDelay: 0.4
+  _nextGoalDelay: 0.5

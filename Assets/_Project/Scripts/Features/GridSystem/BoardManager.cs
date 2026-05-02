@@ -25,7 +25,6 @@ public class BoardManager : MonoBehaviour
     private GridCell _goalGrid;
 
     //TODO Level için gereklilikler
-    private int _maxGroupIndex = 7;
     private int _groupIndex = 0;
 
     private LevelData _currentLevel = null;
@@ -52,7 +51,7 @@ public class BoardManager : MonoBehaviour
     private void OnPlayerGridStatusReached(GameSignal.OnPlayerGridStatus signal)
     {
         if (signal.GridStatus == GridStatus.Goal)
-            StartGoalSequence().Forget();
+            ProcessGoalReachedSequence().Forget();
     }
     private void SetupBoard(GameSignal.OnLevelStarted signal)
     {
@@ -93,19 +92,19 @@ public class BoardManager : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(_currentLevel.LethalDuration), cancellationToken: token);
         }
     }
-    private async UniTask StartGoalSequence()
+    private async UniTask ProcessGoalReachedSequence()
     {
-        float reachDuration = 0.4f;
-        float goalDuration = 0.5f;
-
         ResetGoalGrid();
         //TODO Some effect for reach
-        var effectPosition = new Vector3(_goalGrid.Width, 0f, _goalGrid.Height);
-        _VFXManager.PlayGoalEffect(effectPosition);
-        await UniTask.Delay(TimeSpan.FromSeconds(reachDuration));
+        var spawnPosition = new Vector3(_goalGrid.Width, 0f, _goalGrid.Height);
+        _VFXManager.PlayGoalEffect(spawnPosition);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(_data.GoalEffectDelay));
+
         _scoreManager.IncreaseScore(_currentLevel.ScorePerGoal);
         CreateNewGoalGrid();
-        await UniTask.Delay(TimeSpan.FromSeconds(goalDuration));
+
+        await UniTask.Delay(TimeSpan.FromSeconds(_data.NextGoalDelay));
     }
     public void ClearLethalCells()
     {
