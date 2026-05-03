@@ -1,17 +1,21 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class GridCellView : MonoBehaviour
+public class GridCellView : MonoBehaviour, IPoolable<IMemoryPool>
 {
+    private IMemoryPool _pool;
+
     private GridCell _grid;
 
     private MeshRenderer _meshRenderer;
     private BoxCollider _collider;
 
+    [Header("Visual References")]
     [SerializeField] private GameObject _cellVisual;
-    [SerializeField] private Vector3 _gridScale;
-
+    [Header("Color Settings")]
     [SerializeField] private Color _safeColor;
     [SerializeField] private Color _lethalColor;
     [SerializeField] private Color _goalColor;
@@ -27,13 +31,11 @@ public class GridCellView : MonoBehaviour
         if (_grid != null)
             _grid.OnGridStatusChanged -= HandleGridStatueChanged;
     }
-    public void Configure(GridCell grid, Vector3 scale, Vector3 spawnPosition)
+    public void Configure(GridCell grid, Vector3 spawnPosition)
     {
         if (_grid != null) _grid.OnGridStatusChanged += HandleGridStatueChanged;
 
         _grid = grid;
-        _cellVisual.transform.localScale = scale;
-        _collider.size = _gridScale;
         transform.position = spawnPosition;
 
         _grid.OnGridStatusChanged += HandleGridStatueChanged;
@@ -52,5 +54,20 @@ public class GridCellView : MonoBehaviour
                 break;
         }
     }
+    public void IncreaseScale(Vector3 scale, float duration) => transform.DOScale(scale, duration).SetEase(Ease.OutBounce);
     private void SetColor(Color color) => _meshRenderer.material.color = color;
+    public void OnSpawned(IMemoryPool pool)
+    {
+        _pool = pool;
+    }
+    public void OnDespawned()
+    {
+
+    }
+    public void ReturnToPool()
+    {
+        _pool.Despawn(this);
+    }
+
+    public class Pool : MonoPoolableMemoryPool<IMemoryPool,GridCellView> { }
 }

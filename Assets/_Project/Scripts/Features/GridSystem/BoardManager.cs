@@ -5,9 +5,12 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
 using Zenject;
+using DG.Tweening;
 
 public class BoardManager : MonoBehaviour
 {
+    private GridCellView.Pool _gridPool;
+
     private VFXManager _VFXManager;
     private ScoreManager _scoreManager;
     private SignalBus _signalBus;
@@ -32,11 +35,12 @@ public class BoardManager : MonoBehaviour
     private bool _isSequenceActive = false;
 
     [Inject]
-    public void Construct(SignalBus signalBus, ScoreManager scoreManager, VFXManager VFXManager)
+    public void Construct(SignalBus signalBus, ScoreManager scoreManager, VFXManager VFXManager, GridCellView.Pool gridPool)
     {
         _signalBus = signalBus;
         _scoreManager = scoreManager;
         _VFXManager = VFXManager;
+        _gridPool = gridPool;
     }
     private void OnEnable()
     {
@@ -70,12 +74,13 @@ public class BoardManager : MonoBehaviour
                 _allGrid[j,i] = cell;
                 _allGridList.Add(cell);
 
-                var grid = Instantiate(_gridPrefab);
-                var scale = new Vector3(_currentLevel.Scale, _currentLevel.Scale, _currentLevel.Scale);
+                var grid = _gridPool.Spawn(_gridPool);
                 var spawnPosition = new Vector3(j, 0f, i);
 
                 grid.name = $"Grid[{j},{i}]";
-                grid.Configure(cell, scale, spawnPosition);
+                grid.transform.localScale = Vector3.zero;
+                grid.Configure(cell, spawnPosition);
+                grid.IncreaseScale(Vector3.one, _data.IncreaseDuration);
             }
         }
 
