@@ -12,15 +12,18 @@ public class SignalInstaller : MonoInstaller
         Container.Bind<ScoreManager>().AsSingle();
 
         SignalBusInstaller.Install(Container);
-        Container.DeclareSignal<GameSignal.OnGridColorChanged>();
+        //Check Signals
         Container.DeclareSignal<GameSignal.OnGridChanged>();
+        Container.DeclareSignal<GameSignal.OnGridColorChanged>();
+        Container.DeclareSignal<GameSignal.OnPlayerLanded>();
         Container.DeclareSignal<GameSignal.OnPlayerGridStatus>();
-        Container.DeclareSignal<GameSignal.OnGameScoreChanged>();
-        Container.DeclareSignal<GameSignal.OnGameLevelPassed>();
+        //Health Changed Signals
         Container.DeclareSignal<GameSignal.OnPlayerDead>();
+        //Level Signals
+        Container.DeclareSignal<GameSignal.OnGameLevelPassed>();
         Container.DeclareSignal<GameSignal.OnLevelStarted>();
 
-
+        Container.DeclareSignal<GameSignal.OnGameScoreChanged>();
         Container.BindSignal<GameSignal.OnGameScoreChanged>()
             .ToMethod<ScoreUIController>(x => x.UpdateScoreText)
             .FromResolve();

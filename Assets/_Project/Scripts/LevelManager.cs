@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private List<LevelData> _allLevels = new List<LevelData>();
 
+    [Header("Test Parts")]
     [SerializeField] private LevelData _currentLevelData;
 
     [SerializeField] private Button _startButton;

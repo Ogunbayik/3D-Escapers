@@ -2017,7 +2017,7 @@ MonoBehaviour:
     Fill: {fileID: 21300000, guid: c0d98eab36a288444ac0da95ef775661, type: 2}
     Base: {fileID: 21300000, guid: f32a68e9b329c7f41a2815fbb2ce7231, type: 2}
     Icon: {fileID: 21300000, guid: 8fb62f4be1adafc4a96adbcddd09e698, type: 2}
-  _decreaseDuration: 0.5
+  _decreaseDuration: 1
   _fadeDuration: 2
   _decreaseScale: 2
   _unstableAnimationData:

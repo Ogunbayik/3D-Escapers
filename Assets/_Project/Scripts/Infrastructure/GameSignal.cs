@@ -2,8 +2,11 @@
 
 public static class GameSignal 
 {
+    //Color Check Signals
     public class OnGridColorChanged { }
     public class OnGridChanged { }
+    public class OnPlayerLanded { }
+
     public class OnPlayerGridStatus
     {
         public GridStatus GridStatus;

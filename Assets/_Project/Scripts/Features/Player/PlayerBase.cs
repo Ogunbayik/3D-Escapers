@@ -6,6 +6,7 @@ using Zenject;
 public class PlayerBase : MonoBehaviour
 {
     private PlayerVisual _visual;
+    private PlayerHealth _health;
 
     private SignalBus _signalBus;
     private IInputService _input;
@@ -21,7 +22,6 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private PlayerData _data;
 
     private Collider[] _results = new Collider[5];
-    private PlayerState _currentState;
 
     private float _velocityY;
     public float VelocityY => _velocityY;
@@ -29,27 +29,26 @@ public class PlayerBase : MonoBehaviour
     private GridCell _grid = null;
 
     [Inject]
-    public void Construct(PlayerVisual visual,SignalBus signalBus, CharacterController characterController, IInputService input)
+    public void Construct(PlayerVisual visual,PlayerHealth health,SignalBus signalBus, CharacterController characterController, IInputService input)
     {
         _visual = visual;
+        _health = health;
         _signalBus = signalBus;
         _characterController = characterController;
         _input = input;
-        _currentState = PlayerState.Alive;
     }
     private void OnEnable()
     {
         _signalBus.Subscribe<GameSignal.OnGridChanged>(CheckPlayerGridStatus);
         _signalBus.Subscribe<GameSignal.OnGridColorChanged>(CheckPlayerGridStatus);
-        _signalBus.Subscribe<GameSignal.OnPlayerDead>(HandleDead);
+        _signalBus.Subscribe<GameSignal.OnPlayerLanded>(CheckPlayerGridStatus);
     }
     private void OnDisable()
     {
         _signalBus.Unsubscribe<GameSignal.OnGridChanged>(CheckPlayerGridStatus);
         _signalBus.Unsubscribe<GameSignal.OnGridColorChanged>(CheckPlayerGridStatus);
-        _signalBus.Unsubscribe<GameSignal.OnPlayerDead>(HandleDead);
+        _signalBus.Unsubscribe<GameSignal.OnPlayerLanded>(CheckPlayerGridStatus);
     }
-    public void HandleDead() => SetPlayerState(PlayerState.Dead);
     public void Move(Vector3 movementDirection)
     {
         if (movementDirection.magnitude > 1f)
@@ -91,22 +90,8 @@ public class PlayerBase : MonoBehaviour
     }
     private void CheckPlayerGridStatus()
     {
-        if (_grid == null || _grid.GridStatus == GridStatus.Safe || _currentState != PlayerState.Alive) return;
-
-        switch (_grid.GridStatus)
-        {
-            case GridStatus.Goal:
-                //TODO Player point is increased!
-                Debug.Log("Player gain point!");
-                break;
-            case GridStatus.Lethal:
-                //TODO Player health is decreased!
-                Debug.Log("Player health is deacreased!");
-                break;
-            default:
-                Debug.LogWarning("Unknown Grid Status detected!");
-                break;
-        }
+        if (_grid == null || _grid.GridStatus == GridStatus.Safe) return;
+        if (_health.IsInvulnerable || _health.IsDead) return;
 
         _signalBus.Fire(new GameSignal.OnPlayerGridStatus(_grid.GridStatus));
     }
@@ -125,12 +110,6 @@ public class PlayerBase : MonoBehaviour
     public void DeactivateController()
     {
         _characterController.enabled = false;
-    }
-    public void SetPlayerState(PlayerState newState)
-    {
-        if (_currentState == newState) return;
-
-        _currentState = newState;
     }
     public bool IsMoving()
     {

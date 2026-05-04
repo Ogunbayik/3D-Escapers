@@ -59,7 +59,7 @@ public class PlayerHUD : MonoBehaviour
         PlayHeartAnimationSequence(healthState);
     }
     public void InitializeHUD(float percentage) => UpdateFillAmount(percentage);
-    private void UpdateFillAmount(float percentage) => _fillImage.DOFillAmount(percentage, _decreaseDuration);
+    private void UpdateFillAmount(float percentage) => _fillImage.DOFillAmount(percentage, _decreaseDuration).SetEase(Ease.OutBack);
     private void UpdateHUD(HealthState healthState)
     {
         switch(healthState)
