@@ -14,6 +14,7 @@ public enum GridStatus
 public enum LifeStatus
 {
     Alive,
+    Invulnerable,
     Dead
 }
 public enum HealthState
@@ -22,4 +23,10 @@ public enum HealthState
     Stable,
     Unstable,
     Critical
+}
+
+public enum CameraType
+{
+    Game,
+    Dead
 }

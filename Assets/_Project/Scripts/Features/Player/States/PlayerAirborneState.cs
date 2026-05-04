@@ -16,7 +16,7 @@ public class PlayerAirborneState : PlayerBaseState
     public override void EnterState()
     {
         base.EnterState();
-        _health.SetInvulnerableStatus(true);
+        _health.SetLifeStatus(LifeStatus.Invulnerable);
 
         Player.HandleJump();
 
@@ -36,7 +36,7 @@ public class PlayerAirborneState : PlayerBaseState
         if (Player.IsGrounded() && Player.VelocityY < 0)
         {
             StateMachine.SwitchState<PlayerIdleState>();
-            _health.SetInvulnerableStatus(false);
+            _health.SetLifeStatus(LifeStatus.Alive);
             _signalBus.Fire(new GameSignal.OnPlayerLanded());
         }
     }

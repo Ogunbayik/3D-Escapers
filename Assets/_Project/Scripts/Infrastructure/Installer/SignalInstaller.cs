@@ -19,10 +19,16 @@ public class SignalInstaller : MonoInstaller
         Container.DeclareSignal<GameSignal.OnPlayerGridStatus>();
         //Health Changed Signals
         Container.DeclareSignal<GameSignal.OnPlayerDead>();
+
+        Container.BindSignal<GameSignal.OnPlayerDead>()
+            .ToMethod<CameraManager>(x => x.OnPlayerDead)
+            .FromResolve();
+
         //Level Signals
         Container.DeclareSignal<GameSignal.OnGameLevelPassed>();
         Container.DeclareSignal<GameSignal.OnLevelStarted>();
 
+        //Score Signals
         Container.DeclareSignal<GameSignal.OnGameScoreChanged>();
         Container.BindSignal<GameSignal.OnGameScoreChanged>()
             .ToMethod<ScoreUIController>(x => x.UpdateScoreText)

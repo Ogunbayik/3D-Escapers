@@ -22,10 +22,8 @@ public class PlayerHealth : MonoBehaviour
 
     private int _currentHealth;
 
-    private bool _isInvulnerable;
-
     public bool IsDead => _lifeStatus == LifeStatus.Dead;
-    public bool IsInvulnerable => _isInvulnerable;
+    public bool IsInvulnerable => _lifeStatus == LifeStatus.Invulnerable;
 
     [Inject]
     public void Construct(SignalBus signalBus, PlayerStateMachine stateMachine, PlayerHUD hud)
@@ -46,27 +44,29 @@ public class PlayerHealth : MonoBehaviour
     private void OnEnable()
     {
         _signalBus.Subscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusChanged);
-        _signalBus.Subscribe<GameSignal.OnPlayerDead>(OnPlayerDead);
     }
     private void OnDisable()
     {
         _signalBus.Unsubscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusChanged);
-        _signalBus.Unsubscribe<GameSignal.OnPlayerDead>(OnPlayerDead);
     }
     public void DecreaseHealth()
     {
-        if (_isInvulnerable) return;
+        if (IsInvulnerable || IsDead) return;
 
         _currentHealth--;
 
-        UpdateInvulnerableStatus().Forget();
         UpdateHealthState();
         NotifyHealthChanged();
 
         if (_currentHealth <= 0)
         {
+            SetLifeStatus(LifeStatus.Dead);
             _stateMachine.OnPlayerHealthDepleted();
             _signalBus.Fire(new GameSignal.OnPlayerDead());
+        }
+        else
+        {
+            UpdateInvulnerableStatus().Forget();
         }
     }
     public void SetLifeStatus(LifeStatus newStatus)
@@ -75,16 +75,11 @@ public class PlayerHealth : MonoBehaviour
 
         _lifeStatus = newStatus;
     }
-    public void SetInvulnerableStatus(bool status) => _isInvulnerable = status;
     private void OnPlayerGridStatusChanged(GameSignal.OnPlayerGridStatus signal)
     {
         if (signal.GridStatus == GridStatus.Lethal)
-        {
             DecreaseHealth();
-            SetInvulnerableStatus(true);
-        }
     }
-    private void OnPlayerDead() => SetLifeStatus(LifeStatus.Dead);
     private void UpdateHealthState()
     {
         float healthPercentage = (float)_currentHealth / _data.MaximumHealth;
@@ -100,11 +95,13 @@ public class PlayerHealth : MonoBehaviour
     }
     private async UniTask UpdateInvulnerableStatus()
     {
-        SetInvulnerableStatus(true);
+        SetLifeStatus(LifeStatus.Invulnerable);
+        var token = this.GetCancellationTokenOnDestroy();
 
-        await UniTask.Delay(TimeSpan.FromSeconds(_data.InvulnerableDuration));
+        await UniTask.Delay(TimeSpan.FromSeconds(_data.InvulnerableDuration), cancellationToken: token);
 
-        SetInvulnerableStatus(false);
+        if (_lifeStatus != LifeStatus.Dead)
+            SetLifeStatus(LifeStatus.Alive);
     }
     private void NotifyHealthChanged()
     {
