@@ -21,9 +21,12 @@ public static class GameConst
         public static readonly int JUMP_HASH = Animator.StringToHash(PLAYER_JUMP);
         public static readonly int DEATH_HASH = Animator.StringToHash(PLAYER_DEATH);
     }
-    public class AnimationDuration
+    public static class Durations
     {
-        
+        public const float INITIAL_DELAY = 2f;           
+        public const float CAMERA_TRANSITION_TIME = 2f;  
+        public const float BOARD_SETUP_DELAY = 1f;       
+        public const float PLAYER_TELEPORT_DELAY = 0.5f; 
     }
     public class AnimationTransition
     {

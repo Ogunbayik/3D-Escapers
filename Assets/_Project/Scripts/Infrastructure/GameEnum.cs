@@ -29,5 +29,6 @@ public enum CameraType
 {
     Game,
     Dead,
-    Menu
+    Menu,
+    Transition
 }

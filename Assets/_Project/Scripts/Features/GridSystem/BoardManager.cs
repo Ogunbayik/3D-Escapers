@@ -45,21 +45,19 @@ public class BoardManager : MonoBehaviour
     private void OnEnable()
     {
         _signalBus.Subscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusReached);
-        _signalBus.Subscribe<GameSignal.OnLevelStarted>(SetupBoard);
     }
     private void OnDisable()
     {
         _signalBus.Unsubscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusReached);
-        _signalBus.Unsubscribe<GameSignal.OnLevelStarted>(SetupBoard);
     }
     private void OnPlayerGridStatusReached(GameSignal.OnPlayerGridStatus signal)
     {
         if (signal.GridStatus == GridStatus.Goal)
             ProcessGoalReachedSequence().Forget();
     }
-    private void SetupBoard(GameSignal.OnLevelStarted signal)
+    public void SetupBoard(LevelData levelData)
     {
-        _currentLevel = signal.CurrentLevel;
+        _currentLevel = levelData;
 
         _allGrid = new GridCell[_currentLevel.Width, _currentLevel.Height];
 

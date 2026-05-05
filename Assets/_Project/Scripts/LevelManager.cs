@@ -12,9 +12,6 @@ public class LevelManager : MonoBehaviour
 
     [Header("Test Parts")]
     [SerializeField] private LevelData _currentLevelData;
-
-    [SerializeField] private Button _startButton;
-
     public LevelData CurrentLevelData => _currentLevelData;
 
     [Inject]

@@ -1,9 +1,10 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Zenject;
-using Cysharp.Threading.Tasks;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -36,9 +37,6 @@ public class PlayerHealth : MonoBehaviour
     private void Initialize()
     {
         _currentHealth = _data.MaximumHealth;
-        var percentage = (float)_currentHealth / _data.MaximumHealth;
-
-        _hud.InitializeHUD(percentage);
         _lifeStatus = LifeStatus.Alive;
     }
     private void OnEnable()
@@ -77,6 +75,8 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnPlayerGridStatusChanged(GameSignal.OnPlayerGridStatus signal)
     {
+        Debug.Log($"DecreaseHealth Tetiklendi! Invulnerable: {IsInvulnerable}, GridStatus: {signal.GridStatus}");
+
         if (signal.GridStatus == GridStatus.Lethal)
             DecreaseHealth();
     }

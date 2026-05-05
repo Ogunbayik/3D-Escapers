@@ -14,5 +14,7 @@ public class GameInstaller : MonoInstaller
         Container.BindInstance(_cameraManager).AsSingle();
         Container.BindInstance(_levelManager).AsSingle();
         Container.BindInstance(_menuManager).AsSingle();
+
+        Container.Bind<FlowManager>().AsSingle();
     }
 }

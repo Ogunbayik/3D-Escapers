@@ -19,6 +19,7 @@ public class PlayerAirborneState : PlayerBaseState
         _health.SetLifeStatus(LifeStatus.Invulnerable);
 
         Player.HandleJump();
+        Player.SetGrid(null);
 
         AnimationController.PlayAnimation(GameConst.PlayerAnimation.JUMP_HASH, GameConst.AnimationTransition.QUICK_TRANSITION);
     }
@@ -35,9 +36,11 @@ public class PlayerAirborneState : PlayerBaseState
 
         if (Player.IsGrounded() && Player.VelocityY < 0)
         {
+            Player.CheckGrid();
+
             StateMachine.SwitchState<PlayerIdleState>();
-            _health.SetLifeStatus(LifeStatus.Alive);
             _signalBus.Fire(new GameSignal.OnPlayerLanded());
+            _health.SetLifeStatus(LifeStatus.Alive);
         }
     }
 }

@@ -28,6 +28,10 @@ public class SignalInstaller : MonoInstaller
         Container.DeclareSignal<GameSignal.OnGameLevelPassed>();
         Container.DeclareSignal<GameSignal.OnLevelStarted>();
 
+        Container.BindSignal<GameSignal.OnLevelStarted>()
+            .ToMethod<FlowManager>(x => x.OnLevelStarted)
+            .FromResolve();
+
         //Score Signals
         Container.DeclareSignal<GameSignal.OnGameScoreChanged>();
         Container.BindSignal<GameSignal.OnGameScoreChanged>()

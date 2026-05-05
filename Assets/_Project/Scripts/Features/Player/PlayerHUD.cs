@@ -10,6 +10,8 @@ public class PlayerHUD : MonoBehaviour
 
     private PlayerHealth _health;
 
+    private CanvasGroup _healthBarGroup;
+
     [Header("Image References")]
     [SerializeField] private Image _fillImage;
     [SerializeField] private Image _baseImage;
@@ -31,6 +33,9 @@ public class PlayerHUD : MonoBehaviour
 
     private float _originalScale;
 
+    private float _emptyPercentage = 0f;
+    private float _fullPercentage = 1f;
+
     [Inject]
     public void Construct(PlayerHealth health, SignalBus signalBus)
     {
@@ -38,7 +43,10 @@ public class PlayerHUD : MonoBehaviour
         _signalBus = signalBus;
 
         _originalScale = _iconImage.transform.localScale.x;
+        _healthBarGroup = GetComponent<CanvasGroup>();
     }
+    private void Start() => InitializeEmptyHUD();
+        
     private void OnEnable()
     {
         _health.OnHealthChanged += Health_OnHealthChanged;
@@ -54,11 +62,14 @@ public class PlayerHUD : MonoBehaviour
     private void Health_OnHealthChanged(float percentage, HealthState healthState)
     {
         UpdateFillAmount(percentage);
+
         UpdateHUD(healthState);
 
         PlayHeartAnimationSequence(healthState);
     }
-    public void InitializeHUD(float percentage) => UpdateFillAmount(percentage);
+    public void InitializeEmptyHUD() => _healthBarGroup.alpha = _emptyPercentage;
+    public void FillHealthBarEffect(float fullDuration) => _fillImage.DOFillAmount(_fullPercentage, fullDuration).SetEase(Ease.InQuad);
+    public void DisplayHealthBar(float displayDuration) => _healthBarGroup.DOFade(_fullPercentage, displayDuration);
     private void UpdateFillAmount(float percentage) => _fillImage.DOFillAmount(percentage, _decreaseDuration).SetEase(Ease.OutBack);
     private void UpdateHUD(HealthState healthState)
     {
