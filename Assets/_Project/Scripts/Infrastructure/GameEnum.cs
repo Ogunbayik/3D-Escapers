@@ -28,5 +28,6 @@ public enum HealthState
 public enum CameraType
 {
     Game,
-    Dead
+    Dead,
+    Menu
 }

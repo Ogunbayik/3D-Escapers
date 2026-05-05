@@ -9,6 +9,7 @@ public class CameraManager : MonoBehaviour
     [Header("Camera References")]
     [SerializeField] private CinemachineVirtualCamera _gameCamera;
     [SerializeField] private CinemachineVirtualCamera _deadCamera;
+    [SerializeField] private CinemachineVirtualCamera _menuCamera;
     [Header("Source References")]
     [SerializeField] private CinemachineImpulseSource _impulseSource;
 
@@ -20,11 +21,13 @@ public class CameraManager : MonoBehaviour
     {
         _gameCamera.Priority = 10;
         _deadCamera.Priority = 10;
+        _menuCamera.Priority = 10;
 
         switch(cameraType)
         {
             case CameraType.Game: _gameCamera.Priority = 20; break;
             case CameraType.Dead:_deadCamera.Priority = 20; break;
+            case CameraType.Menu: _menuCamera.Priority = 20; break;
         }
     }
 }

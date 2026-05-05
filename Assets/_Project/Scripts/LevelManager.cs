@@ -15,11 +15,10 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private Button _startButton;
 
+    public LevelData CurrentLevelData => _currentLevelData;
+
     [Inject]
     public void Construct(SignalBus signalBus) => _signalBus = signalBus;
-
-    private void Start() => _startButton.onClick.AddListener(StartLevel);
-    private void StartLevel() => _signalBus.Fire(new GameSignal.OnLevelStarted(_currentLevelData));
     public void SetLevelData(LevelData newLevelData)
     {
         if (newLevelData == _currentLevelData)
