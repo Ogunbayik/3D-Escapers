@@ -18,6 +18,8 @@ public class PlayerData : ScriptableObject
     [SerializeField] private int _maximumHealth;
     [Header("Duration Settings")]
     [SerializeField] private float _invulnerableDuration;
+    [Header("Menu Settings")]
+    [SerializeField] private Vector3 _menuPoseRotation;
 
     public float MovementSpeed => _movementSpeed;
     public float RotationSpeed => _rotationSpeed;
@@ -27,4 +29,5 @@ public class PlayerData : ScriptableObject
     public float CheckDistance => _checkDistance;
     public int MaximumHealth => _maximumHealth;
     public float InvulnerableDuration => _invulnerableDuration;
+    public Vector3 MenuPoseRotation => _menuPoseRotation;
 }

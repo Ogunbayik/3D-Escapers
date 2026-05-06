@@ -15,11 +15,19 @@ public static class GameConst
         public const string PLAYER_MOVE = "Player_Move";
         public const string PLAYER_JUMP = "Player_Jump";
         public const string PLAYER_DEATH = "Player_Death";
+        //Menu Animations
+        public const string PLAYER_SHRUGGING = "Player_Menu_Shrugging";
+        public const string PLAYER_LOOKOVERSHOULDER = "Player_Menu_Look_Over_Shoulder";
+        public const string PLAYER_SHOULDERRUBBING = "Player_Menu_Shoulder_Rubbing";
 
         public static readonly int IDLE_HASH = Animator.StringToHash(PLAYER_IDLE);
         public static readonly int MOVE_HASH = Animator.StringToHash(PLAYER_MOVE);
         public static readonly int JUMP_HASH = Animator.StringToHash(PLAYER_JUMP);
         public static readonly int DEATH_HASH = Animator.StringToHash(PLAYER_DEATH);
+        //Menu Animations
+        public static readonly int SHRUGGING_HASH = Animator.StringToHash(PLAYER_SHRUGGING);
+        public static readonly int LOOKOVERSHOULDER_HASH = Animator.StringToHash(PLAYER_LOOKOVERSHOULDER);
+        public static readonly int SHOULDERRUBBING_HASH = Animator.StringToHash(PLAYER_SHOULDERRUBBING);
     }
     public static class Durations
     {

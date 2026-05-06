@@ -84,7 +84,12 @@ public class BoardManager : MonoBehaviour
 
         InitialGoalGrid();
     }
-    private async UniTask StartLethalSequence()
+    public void StartLethalSequence()
+    {
+        _isSequenceActive = true;
+        LethalSequence().Forget();
+    }
+    private async UniTask LethalSequence()
     {
         var token = this.GetCancellationTokenOnDestroy();
 
@@ -153,14 +158,6 @@ public class BoardManager : MonoBehaviour
 
         if (_groupIndex >= _currentLevel.LethalGroups.Count)
             _groupIndex = 0;
-    }
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            _isSequenceActive = true;
-            StartLethalSequence().Forget();
-        }
     }
     public void InitialGoalGrid()
     {

@@ -23,11 +23,10 @@ public class PlayerBase : MonoBehaviour
 
     private Collider[] _results = new Collider[5];
 
-    private float _velocityY;
-    public float VelocityY => _velocityY;
-
     private GridCell _grid = null;
 
+    private float _velocityY;
+    public float VelocityY => _velocityY;
     [Inject]
     public void Construct(PlayerVisual visual,PlayerHealth health,SignalBus signalBus, CharacterController characterController, IInputService input)
     {
@@ -69,6 +68,7 @@ public class PlayerBase : MonoBehaviour
             _visual.Body.rotation = Quaternion.Slerp(_visual.Body.rotation, rotation, _data.RotationSpeed * Time.deltaTime);
         }
     }
+    public void AlignToMenuPose() => _visual.Body.rotation = Quaternion.Euler(_data.MenuPoseRotation);
     public void CheckGrid()
     {
         int gridCount = Physics.OverlapSphereNonAlloc(_checkTransform.position, _data.CheckDistance, _results, _gridLayer);

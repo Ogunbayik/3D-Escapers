@@ -42,5 +42,10 @@ public class FlowManager
 
         _menuManager.FillHealtBarEffect();
         _menuManager.ToggleGameCanvas(true);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
+
+        //TODO Activate player controllers
+        _boardManager.StartLethalSequence();
     }
 }

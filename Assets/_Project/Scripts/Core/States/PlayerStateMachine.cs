@@ -8,17 +8,13 @@ public class PlayerStateMachine : IInitializable, ITickable
 {
     protected List<IState> _states;
     protected IState _currentState;
-    public PlayerStateMachine(List<IState> states)
-    {
-        _states = states;
-        Initialize();
-    }
+    public PlayerStateMachine(List<IState> states) => _states = states;
     public void Initialize()
     {
         foreach (var state in _states)
             state.SetStateMachine(this);
 
-        SwitchState<PlayerIdleState>();
+        SwitchState<PlayerMenuIdleState>();
     }
     public void Tick() => _currentState?.Tick();
     public void SwitchState<T>() where T : IState

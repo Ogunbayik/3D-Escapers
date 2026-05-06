@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,5 +14,16 @@ public class AnimationController
             return;
 
         _animator.CrossFade(animationHash, transitionTime);
+    }
+    public bool IsAnimationFinished(int animationHash)
+    {
+        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.shortNameHash == animationHash)
+        {
+            return stateInfo.normalizedTime >= 1.0f && !_animator.IsInTransition(0);
+        }
+
+        return false;
     }
 }

@@ -16,6 +16,7 @@ public class PlayerVisual : MonoBehaviour
     [Header("Color Settings")]
     [SerializeField] private Color _originalColor;
     [SerializeField] private Color _hitColor;
+    [Header("Duration Settings")]
     [SerializeField] private float _changeDuration;
 
     public Transform Body => _body;
