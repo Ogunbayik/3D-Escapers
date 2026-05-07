@@ -29,7 +29,7 @@ public class MenuManager : MonoBehaviour
     }
     private void Start()
     {
-        _playButton.onClick.AddListener(OnLevelStarted);
+        _playButton.onClick.AddListener(OnLevelPreperation);
         Initialize();
     }
     private void Initialize()
@@ -39,7 +39,7 @@ public class MenuManager : MonoBehaviour
         ToggleMenuCanvas(true);
         ToggleGameCanvas(false);
     }
-    private void OnLevelStarted() => _signalBus.Fire(new GameSignal.OnLevelStarted(_levelManager.CurrentLevelData));
+    private void OnLevelPreperation() => _signalBus.Fire(new GameSignal.OnLevelInitializing(_levelManager.CurrentLevelData));
     public void ToggleMenuCanvas(bool isActive) => _menuCanvas.gameObject.SetActive(isActive);
     public void ToggleGameCanvas(bool isActive) => _gameCanvas.gameObject.SetActive(isActive);
     public void TogglePlayerCanvas(bool isActive) => _playerCanvas.gameObject.SetActive(isActive);

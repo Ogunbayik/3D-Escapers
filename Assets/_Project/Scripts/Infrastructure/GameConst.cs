@@ -31,10 +31,18 @@ public static class GameConst
     }
     public static class Durations
     {
-        public const float INITIAL_DELAY = 2f;           
+        public const float INITIAL_DELAY = 1.5f;           
         public const float CAMERA_TRANSITION_TIME = 2f;  
         public const float BOARD_SETUP_DELAY = 1f;       
         public const float PLAYER_TELEPORT_DELAY = 0.5f; 
+    }
+    public static class ShaderProperties
+    {
+        public const string DISSOLVE_AMOUNT = "_DissolveAmount";
+        public const string PLAYER_BASE_COLOR = "_BaseColor";
+
+        public const float DISSOLVE_APPEAR_VALUE = -1f;
+        public const float DISSOLVE_DISAPPEAR_VALUE = 1f;
     }
     public class AnimationTransition
     {

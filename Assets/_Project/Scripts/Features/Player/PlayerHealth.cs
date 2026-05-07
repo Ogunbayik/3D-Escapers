@@ -8,8 +8,6 @@ using Zenject;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private PlayerHUD _hud;
-
     public event Action<float, HealthState> OnHealthChanged;
 
     private SignalBus _signalBus;
@@ -19,7 +17,6 @@ public class PlayerHealth : MonoBehaviour
 
     private HealthState _healthState;
     private LifeStatus _lifeStatus;
-    private PlayerStateMachine _stateMachine;
 
     private int _currentHealth;
 
@@ -27,26 +24,15 @@ public class PlayerHealth : MonoBehaviour
     public bool IsInvulnerable => _lifeStatus == LifeStatus.Invulnerable;
 
     [Inject]
-    public void Construct(SignalBus signalBus, PlayerStateMachine stateMachine, PlayerHUD hud)
-    { 
-        _signalBus = signalBus;
-        _stateMachine = stateMachine;
-        _hud = hud;
-    }
+    public void Construct(SignalBus signalBus) => _signalBus = signalBus;
     void Start() => Initialize();
     private void Initialize()
     {
         _currentHealth = _data.MaximumHealth;
         _lifeStatus = LifeStatus.Alive;
     }
-    private void OnEnable()
-    {
-        _signalBus.Subscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusChanged);
-    }
-    private void OnDisable()
-    {
-        _signalBus.Unsubscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusChanged);
-    }
+    private void OnEnable() => _signalBus.Subscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusChanged);
+    private void OnDisable() => _signalBus.Unsubscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusChanged);
     public void DecreaseHealth()
     {
         if (IsInvulnerable || IsDead) return;
@@ -59,7 +45,6 @@ public class PlayerHealth : MonoBehaviour
         if (_currentHealth <= 0)
         {
             SetLifeStatus(LifeStatus.Dead);
-            _stateMachine.OnPlayerHealthDepleted();
             _signalBus.Fire(new GameSignal.OnPlayerDead());
         }
         else

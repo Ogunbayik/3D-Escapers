@@ -20,12 +20,12 @@ public static class GameSignal
 
     //Level Signals
     public class OnGameLevelPassed { }
-    public class OnLevelStarted
+    public class OnLevelInitializing
     {
         public LevelData CurrentLevel;
-        public OnLevelStarted(LevelData levelData) => CurrentLevel = levelData;
+        public OnLevelInitializing(LevelData levelData) => CurrentLevel = levelData;
     }
-
+    public class OnLevelStarted { }
     //Player Signals
     public class OnPlayerDead { }
 }

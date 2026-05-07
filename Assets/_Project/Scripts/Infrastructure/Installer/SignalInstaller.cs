@@ -5,18 +5,22 @@ public class SignalInstaller : MonoInstaller
 {
     [SerializeField] private BoardManager _boardManager;
     [SerializeField] private ScoreUIController _scoreUIController;
+    [SerializeField] private PlayerVisual _visual;
     public override void InstallBindings()
     {
         Container.BindInstance(_boardManager).AsSingle();
+        Container.BindInstance(_visual).AsSingle();
         Container.BindInstance(_scoreUIController).AsSingle();
         Container.Bind<ScoreManager>().AsSingle();
 
         SignalBusInstaller.Install(Container);
+
         //Check Signals
         Container.DeclareSignal<GameSignal.OnGridChanged>();
         Container.DeclareSignal<GameSignal.OnGridColorChanged>();
         Container.DeclareSignal<GameSignal.OnPlayerLanded>();
         Container.DeclareSignal<GameSignal.OnPlayerGridStatus>();
+
         //Health Changed Signals
         Container.DeclareSignal<GameSignal.OnPlayerDead>();
 
@@ -26,11 +30,14 @@ public class SignalInstaller : MonoInstaller
 
         //Level Signals
         Container.DeclareSignal<GameSignal.OnGameLevelPassed>();
+        Container.DeclareSignal<GameSignal.OnLevelInitializing>();
         Container.DeclareSignal<GameSignal.OnLevelStarted>();
 
-        Container.BindSignal<GameSignal.OnLevelStarted>()
-            .ToMethod<FlowManager>(x => x.OnLevelStarted)
+        Container.BindSignal<GameSignal.OnLevelInitializing>()
+            .ToMethod<FlowManager>(x => x.OnLevelInitializing)
             .FromResolve();
+
+       
 
         //Score Signals
         Container.DeclareSignal<GameSignal.OnGameScoreChanged>();

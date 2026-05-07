@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boardManager: {fileID: 734619256}
   _scoreUIController: {fileID: 1046666039}
+  _visual: {fileID: 2060769010}
 --- !u!1 &33698647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,7 +1658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 886608079}
   m_Layer: 0
-  m_Name: TestLook
+  m_Name: StartPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3219,7 +3220,6 @@ MonoBehaviour:
   _menuCamera: {fileID: 562952591}
   _transitionCamera: {fileID: 967446636}
   _impulseSource: {fileID: 1916727788}
-  Player: {fileID: 2060769005}
 --- !u!114 &1916727788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3499,9 +3499,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _body: {fileID: 624936797575029426}
-  _originalColor: {r: 0.40392157, g: 1, b: 0.29411766, a: 1}
-  _hitColor: {r: 0.94716984, g: 0, b: 0, a: 1}
+  _startPosition: {fileID: 886608079}
+  _originalColor: {r: 0, g: 1, b: 0.85882354, a: 1}
+  _hitColor: {r: 0.6226415, g: 0, b: 0, a: 1}
   _changeDuration: 1
+  _changeMultiply: 0.25
+  _dissolveDuration: 3
+  _disapperDelay: 3.5
+  _teleportDelay: 1
 --- !u!1 &2093701405
 GameObject:
   m_ObjectHideFlags: 0
@@ -3619,7 +3624,7 @@ MonoBehaviour:
     roll: 0
   - position: {x: -13.060341, y: 15, z: -23.00933}
     roll: 0
-  - position: {x: -2, y: 10, z: -2}
+  - position: {x: 0, y: 10, z: -2}
     roll: 0
 --- !u!4 &2128826254
 Transform:
@@ -3677,7 +3682,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 69a85e224b846c747a38808a4a585f63, type: 2}
+  - {fileID: 2100000, guid: 2922991f4aee87340890b95908ee41cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

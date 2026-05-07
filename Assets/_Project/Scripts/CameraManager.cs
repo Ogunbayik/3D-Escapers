@@ -15,8 +15,6 @@ public class CameraManager : MonoBehaviour
     [Header("Source References")]
     [SerializeField] private CinemachineImpulseSource _impulseSource;
 
-    public PlayerBase Player;
-
     private void Start() => Initialize();
     private void Initialize() => SwitchCamera(CameraType.Menu);
     public void GenerateHitShake() => _impulseSource.GenerateImpulse();

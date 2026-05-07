@@ -11,18 +11,19 @@ public class FlowManager
     private CameraManager _cameraManager;
     private BoardManager _boardManager;
     private LevelManager _levelManager;
+    private SignalBus _signalBus;
 
-    public FlowManager(MenuManager menuManager, CameraManager cameraManager, BoardManager boardManager, LevelManager levelManager)
+    public FlowManager(MenuManager menuManager, CameraManager cameraManager, BoardManager boardManager, LevelManager levelManager, SignalBus signalBus)
     {
         _menuManager = menuManager;
         _cameraManager = cameraManager;
         _boardManager = boardManager;
         _levelManager = levelManager;
+        _signalBus = signalBus;
     }
-    public void OnLevelStarted() => LevelStartSequence().Forget();
+    public void OnLevelInitializing() => LevelStartSequence().Forget();
     public async UniTask LevelStartSequence()
     {
-        //TODO Create animation for player Teleport
         _menuManager.ToggleMenuCanvas(false);
 
         await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.INITIAL_DELAY));
@@ -37,7 +38,6 @@ public class FlowManager
 
         await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.BOARD_SETUP_DELAY));
 
-        _cameraManager.Player.transform.position = new Vector3(-2f, 0f, -2f);
         _cameraManager.SwitchCamera(CameraType.Game);
 
         _menuManager.FillHealtBarEffect();
@@ -45,7 +45,8 @@ public class FlowManager
 
         await UniTask.Delay(TimeSpan.FromSeconds(2f));
 
-        //TODO Activate player controllers
         _boardManager.StartLethalSequence();
+
+        _signalBus.Fire(new GameSignal.OnLevelStarted());
     }
 }

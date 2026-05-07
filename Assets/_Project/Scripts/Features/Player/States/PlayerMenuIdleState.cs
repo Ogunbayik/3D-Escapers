@@ -17,14 +17,14 @@ public class PlayerMenuIdleState : PlayerBaseState
     public override void EnterState()
     {
         _countdownTimer = GameUtilis.GetRandomFloat(_minTime, _maxTime);
-        //TODO animasyon olarak hazýrlanma hareketleri vs yapýlacak ve farklý animasyonlara geçiþ yapacak zamanlamaya göre.
+
         Player.AlignToMenuPose();
 
         AnimationController.PlayAnimation(GameConst.PlayerAnimation.IDLE_HASH, GameConst.AnimationTransition.QUICK_TRANSITION);
     }
     public override void ExitState()
     {
-         
+
     }
     public override void Tick()
     {

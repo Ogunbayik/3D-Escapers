@@ -25,5 +25,17 @@ public class PlayerInstaller : MonoInstaller
 
         Container.Bind<AnimationController>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerStateMachine>().AsSingle().NonLazy();
+
+        Container.BindSignal<GameSignal.OnLevelInitializing>()
+            .ToMethod<PlayerVisual>(x => x.PlayTeleportSequence)
+            .FromResolve();
+
+        Container.BindSignal<GameSignal.OnLevelStarted>()
+            .ToMethod<PlayerStateMachine>(x => x.OnPlayerActivateControl)
+            .FromResolve();
+
+        Container.BindSignal<GameSignal.OnPlayerDead>()
+            .ToMethod<PlayerStateMachine>(x => x.OnPlayerHealthDepleted)
+            .FromResolve();
     }
 }

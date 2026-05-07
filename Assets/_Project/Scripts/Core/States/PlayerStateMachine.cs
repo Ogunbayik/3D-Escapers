@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +7,8 @@ using Zenject;
 
 public class PlayerStateMachine : IInitializable, ITickable
 {
-    protected List<IState> _states;
-    protected IState _currentState;
+    private List<IState> _states;
+    private IState _currentState;
     public PlayerStateMachine(List<IState> states) => _states = states;
     public void Initialize()
     {
@@ -25,4 +26,5 @@ public class PlayerStateMachine : IInitializable, ITickable
         _currentState?.EnterState();
     }
     public void OnPlayerHealthDepleted() => SwitchState<PlayerDeathState>();
+    public void OnPlayerActivateControl() => SwitchState<PlayerIdleState>();
 }
