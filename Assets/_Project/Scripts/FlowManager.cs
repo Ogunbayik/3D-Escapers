@@ -33,7 +33,7 @@ public class FlowManager
 
         await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.CAMERA_TRANSITION_TIME));
 
-        _boardManager.SetupBoard(_levelManager.CurrentLevelData);
+        _boardManager.SetupBoard(_levelManager.ActiveLevelData);
         _menuManager.DisplayHealthBar();
 
         await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.BOARD_SETUP_DELAY));

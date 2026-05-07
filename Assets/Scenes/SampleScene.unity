@@ -166,9 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3476b449608f2944db7393d8d59a8c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boardManager: {fileID: 734619256}
-  _scoreUIController: {fileID: 1046666039}
-  _visual: {fileID: 2060769010}
 --- !u!1 &33698647
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,9 +210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda9e45829914c143b5016e206569e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boardManager: {fileID: 734619256}
   _cameraManager: {fileID: 1916727787}
   _levelManager: {fileID: 618774488}
   _menuManager: {fileID: 1644538904}
+  _scoreUIController: {fileID: 1046666039}
 --- !u!1 &46334801
 GameObject:
   m_ObjectHideFlags: 3
@@ -1183,7 +1182,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2cd2e7507b7c1f245bf4e94bca8cb682, type: 2}
   - {fileID: 11400000, guid: a6b3e4b88e83cf044b330e9373dd2b46, type: 2}
   - {fileID: 11400000, guid: 58c29c2ac7edf254ba0ed928ccef71b2, type: 2}
-  _currentLevelData: {fileID: 11400000, guid: 61eb720d158d22d4fb731b3766780a28, type: 2}
 --- !u!1 &631871427
 GameObject:
   m_ObjectHideFlags: 0

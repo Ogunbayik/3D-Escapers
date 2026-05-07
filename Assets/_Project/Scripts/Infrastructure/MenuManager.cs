@@ -39,7 +39,7 @@ public class MenuManager : MonoBehaviour
         ToggleMenuCanvas(true);
         ToggleGameCanvas(false);
     }
-    private void OnLevelPreperation() => _signalBus.Fire(new GameSignal.OnLevelInitializing(_levelManager.CurrentLevelData));
+    private void OnLevelPreperation() => _signalBus.Fire(new GameSignal.OnLevelInitializing(_levelManager.ActiveLevelData));
     public void ToggleMenuCanvas(bool isActive) => _menuCanvas.gameObject.SetActive(isActive);
     public void ToggleGameCanvas(bool isActive) => _gameCanvas.gameObject.SetActive(isActive);
     public void TogglePlayerCanvas(bool isActive) => _playerCanvas.gameObject.SetActive(isActive);

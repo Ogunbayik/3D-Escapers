@@ -19,7 +19,7 @@ public class ScoreManager
         if (IsReachScore())
         {
             Debug.Log("Player pass the game..");
-            _signalBus.Fire(new GameSignal.OnGameLevelPassed());
+            _signalBus.Fire(new GameSignal.OnLevelCompleted());
         }
     }
     public bool IsReachScore() => _currentScore >= _reachScore;

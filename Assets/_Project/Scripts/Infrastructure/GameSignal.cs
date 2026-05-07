@@ -19,7 +19,7 @@ public static class GameSignal
     }
 
     //Level Signals
-    public class OnGameLevelPassed { }
+    public class OnLevelCompleted { }
     public class OnLevelInitializing
     {
         public LevelData CurrentLevel;

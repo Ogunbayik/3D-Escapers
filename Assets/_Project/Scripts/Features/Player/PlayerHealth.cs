@@ -60,8 +60,6 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnPlayerGridStatusChanged(GameSignal.OnPlayerGridStatus signal)
     {
-        Debug.Log($"DecreaseHealth Tetiklendi! Invulnerable: {IsInvulnerable}, GridStatus: {signal.GridStatus}");
-
         if (signal.GridStatus == GridStatus.Lethal)
             DecreaseHealth();
     }
