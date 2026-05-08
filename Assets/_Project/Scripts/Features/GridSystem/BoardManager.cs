@@ -81,8 +81,6 @@ public class BoardManager : MonoBehaviour
                 grid.IncreaseScale(Vector3.one, _data.IncreaseDuration);
             }
         }
-
-        InitialGoalGrid();
     }
     public void StartLethalSequence()
     {
@@ -161,7 +159,6 @@ public class BoardManager : MonoBehaviour
     }
     public void InitialGoalGrid()
     {
-        //TODO Using this method when the game started!
         _goalGrid = GetRandomGrid();
         ActivateGoalGrid();
     }

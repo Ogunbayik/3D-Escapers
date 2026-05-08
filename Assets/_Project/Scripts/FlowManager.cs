@@ -40,11 +40,12 @@ public class FlowManager
 
         _cameraManager.SwitchCamera(CameraType.Game);
 
-        _menuManager.FillHealtBarEffect();
+        _menuManager.AnimateHealthRefill();
         _menuManager.ToggleGameCanvas(true);
 
-        await UniTask.Delay(TimeSpan.FromSeconds(2f));
+        await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.GAMEPLAY_START_DELAY));
 
+        _boardManager.InitialGoalGrid();
         _boardManager.StartLethalSequence();
 
         _signalBus.Fire(new GameSignal.OnLevelStarted());

@@ -20,6 +20,17 @@ public static class GameSignal
 
     //Level Signals
     public class OnLevelCompleted { }
+    public class OnLevelDataChanged
+    {
+        public LevelData LevelData;
+        public int LevelIndex;
+
+        public OnLevelDataChanged(LevelData levelData, int levelIndex)
+        {
+            LevelData = levelData;
+            LevelIndex = levelIndex;
+        }
+    }
     public class OnLevelInitializing
     {
         public LevelData CurrentLevel;

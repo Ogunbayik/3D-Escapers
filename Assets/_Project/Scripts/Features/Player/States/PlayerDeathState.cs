@@ -7,10 +7,7 @@ public class PlayerDeathState : PlayerGroundedState
     protected PlayerDeathState(PlayerBase player, AnimationController animationController) : base(player, animationController) { }
     public override void EnterState()
     {
-        base.EnterState();
-
         Debug.Log("Player is Dead");
-        Player.DeactivateController();
         AnimationController.PlayAnimation(GameConst.PlayerAnimation.DEATH_HASH, GameConst.AnimationTransition.SMOOTH_TRANSITION);
 
     }

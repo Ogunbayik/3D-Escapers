@@ -6,12 +6,9 @@ using Zenject;
 public class PlayerAirborneState : PlayerBaseState
 {
     private PlayerHealth _health;
-
-    private SignalBus _signalBus;
-    public PlayerAirborneState(PlayerBase player, AnimationController animationController, PlayerHealth health, SignalBus signalBus) : base(player, animationController)
+    public PlayerAirborneState(PlayerBase player, AnimationController animationController, PlayerHealth health) : base(player, animationController)
     {
         _health = health;
-        _signalBus = signalBus;
     }
     public override void EnterState()
     {
@@ -34,13 +31,7 @@ public class PlayerAirborneState : PlayerBaseState
         Player.ApplyGravity();
         Player.Move(direction);
 
-        if (Player.IsGrounded() && Player.VelocityY < 0)
-        {
-            Player.CheckGrid();
-
-            StateMachine.SwitchState<PlayerIdleState>();
-            _signalBus.Fire(new GameSignal.OnPlayerLanded());
-            _health.SetLifeStatus(LifeStatus.Alive);
-        }
+        if (Player.VelocityY < 0f)
+            StateMachine.SwitchState<PlayerFallState>();
     }
 }

@@ -15,6 +15,7 @@ public static class GameConst
         public const string PLAYER_MOVE = "Player_Move";
         public const string PLAYER_JUMP = "Player_Jump";
         public const string PLAYER_DEATH = "Player_Death";
+        public const string PLAYER_FALL = "Player_Fall";
         //Menu Animations
         public const string PLAYER_SHRUGGING = "Player_Menu_Shrugging";
         public const string PLAYER_LOOKOVERSHOULDER = "Player_Menu_Look_Over_Shoulder";
@@ -24,6 +25,7 @@ public static class GameConst
         public static readonly int MOVE_HASH = Animator.StringToHash(PLAYER_MOVE);
         public static readonly int JUMP_HASH = Animator.StringToHash(PLAYER_JUMP);
         public static readonly int DEATH_HASH = Animator.StringToHash(PLAYER_DEATH);
+        public static readonly int FALL_HASH = Animator.StringToHash(PLAYER_FALL);
         //Menu Animations
         public static readonly int SHRUGGING_HASH = Animator.StringToHash(PLAYER_SHRUGGING);
         public static readonly int LOOKOVERSHOULDER_HASH = Animator.StringToHash(PLAYER_LOOKOVERSHOULDER);
@@ -34,7 +36,8 @@ public static class GameConst
         public const float INITIAL_DELAY = 1.5f;           
         public const float CAMERA_TRANSITION_TIME = 2f;  
         public const float BOARD_SETUP_DELAY = 1f;       
-        public const float PLAYER_TELEPORT_DELAY = 0.5f; 
+        public const float PLAYER_TELEPORT_DELAY = 0.5f;
+        public const float GAMEPLAY_START_DELAY = 2f;
     }
     public static class ShaderProperties
     {

@@ -10,7 +10,16 @@ public class PlayerGroundedState : PlayerBaseState
     public override void Tick()
     {
         if (Player.IsGrounded() && Player.PressedJump())
+        {
             StateMachine.SwitchState<PlayerAirborneState>();
+            return;
+        }
+
+        if(!Player.IsGrounded())
+        {
+            StateMachine.SwitchState<PlayerFallState>();
+            return;
+        }
 
         Player.CheckGrid();
     }

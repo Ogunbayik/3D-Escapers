@@ -29,11 +29,6 @@ public class GameInstaller : MonoInstaller
           .ToMethod<CameraManager>(x => x.OnPlayerDead)
           .FromResolve();
 
-        //Level Methods
-        Container.BindSignal<GameSignal.OnLevelCompleted>()
-            .ToMethod<LevelManager>(x => x.OnLevelComplete)
-            .FromResolve();
-
         //Flow Methods
         Container.BindSignal<GameSignal.OnLevelInitializing>()
           .ToMethod<FlowManager>(x => x.OnLevelInitializing)

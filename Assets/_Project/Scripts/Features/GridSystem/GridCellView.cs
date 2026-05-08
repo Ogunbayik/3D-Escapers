@@ -44,17 +44,22 @@ public class GridCellView : MonoBehaviour, IPoolable<IMemoryPool>
     }
     public void HandleGridStatueChanged(GridStatus gridStatus)
     {
+        transform.DOKill();
+
         switch(gridStatus)
         {
             case GridStatus.Safe: SetColor(_safeColor);
+                transform.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
                 break;
             case GridStatus.Lethal: SetColor(_lethalColor);
                 break;
             case GridStatus.Goal: SetColor(_goalColor);
+                AnimateGoalGrid();
                 break;
         }
     }
     public void IncreaseScale(Vector3 scale, float duration) => transform.DOScale(scale, duration).SetEase(Ease.OutBounce);
+    public void AnimateGoalGrid() => transform.DOScale(0.8f, 0.5f).SetLoops(-1, LoopType.Yoyo);
     private void SetColor(Color color) => _meshRenderer.material.color = color;
     public void OnSpawned(IMemoryPool pool)
     {

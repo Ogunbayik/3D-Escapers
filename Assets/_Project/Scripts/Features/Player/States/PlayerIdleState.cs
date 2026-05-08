@@ -16,6 +16,12 @@ public class PlayerIdleState : PlayerGroundedState
         base.Tick();
 
         if (Player.IsMoving())
+        {
             StateMachine.SwitchState<PlayerMovementState>();
+            return;
+        }
+
+        var direction = Vector3.zero;
+        Player.Move(direction);
     }
 }

@@ -50,7 +50,7 @@ public class PlayerBase : MonoBehaviour
     }
     public void Move(Vector3 movementDirection)
     {
-        if (movementDirection.magnitude > 1f)
+        if (movementDirection.sqrMagnitude > 1f)
             movementDirection.Normalize();
 
         Vector3 finalMovement = movementDirection * _data.MovementSpeed;
@@ -62,6 +62,8 @@ public class PlayerBase : MonoBehaviour
     }
     private void HandleRotation(Vector3 direction)
     {
+        direction.y = 0f;
+
         if (IsMoving())
         {
             var rotation = Quaternion.LookRotation(direction);
@@ -103,19 +105,11 @@ public class PlayerBase : MonoBehaviour
             _velocityY += Physics.gravity.y * _data.GravityMultiplier * Time.deltaTime;
     }
     public void HandleJump() => _velocityY = Mathf.Sqrt(_data.JumpHeight * GameConst.PhysicsDefaults.GRAVITY_COEFFICIENT * Physics.gravity.y);
-    public void ActivateController()
-    {
-        _characterController.enabled = true;
-    }
-    public void DeactivateController()
-    {
-        _characterController.enabled = false;
-    }
     public bool IsMoving()
     {
         var direction = GetMovementDirection();
 
-        return direction.magnitude > 0.1f;
+        return direction.sqrMagnitude > 0.01f;
     }
     public bool IsGrounded() => Physics.CheckSphere(_checkTransform.position, _data.CheckDistance, _groundLayer);
     public bool PressedJump() => _input.PressedJump();

@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public LevelData ActiveLevelData => _activeLevelData;
 
     private int _levelIndex;
+    public int LevelIndex => _levelIndex;
 
     [Inject]
     public void Construct(SignalBus signalBus, ISaveService saveService)
@@ -29,12 +30,22 @@ public class LevelManager : MonoBehaviour
         _levelIndex = _saveService.GetSavedLevelIndex();
         _activeLevelData = _allLevels[_levelIndex];
     }
+    private void OnEnable()
+    {
+        _signalBus.Subscribe<GameSignal.OnLevelCompleted>(OnLevelComplete);
+    }
+    private void OnDisable()
+    {
+        _signalBus.Unsubscribe<GameSignal.OnLevelCompleted>(OnLevelComplete);
+    }
     public void OnLevelComplete()
     {
         _levelIndex++;
 
         _saveService.SaveLevelIndex(_levelIndex);
         SetLevelData(_allLevels[_levelIndex]);
+
+        _signalBus.Fire(new GameSignal.OnLevelDataChanged(_activeLevelData, _levelIndex));
     }
     public void SetLevelData(LevelData newLevelData)
     {
