@@ -33,12 +33,14 @@ public class FlowManager
 
         await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.CAMERA_TRANSITION_TIME));
 
-        _boardManager.SetupBoard(_levelManager.ActiveLevelData);
-        _menuManager.DisplayHealthBar();
+        _boardManager.TestSetupBoard(_levelManager.ActiveLevelData).Forget();
 
         await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.BOARD_SETUP_DELAY));
 
+        _menuManager.DisplayHealthBar();
         _cameraManager.SwitchCamera(CameraType.Game);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.DISPLAY_HEALTH_DELAY));
 
         _menuManager.AnimateHealthRefill();
         _menuManager.ToggleGameCanvas(true);

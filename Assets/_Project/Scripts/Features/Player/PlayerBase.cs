@@ -64,7 +64,7 @@ public class PlayerBase : MonoBehaviour
     {
         direction.y = 0f;
 
-        if (IsMoving())
+        if (direction.sqrMagnitude > 0.01f)
         {
             var rotation = Quaternion.LookRotation(direction);
             _visual.Body.rotation = Quaternion.Slerp(_visual.Body.rotation, rotation, _data.RotationSpeed * Time.deltaTime);

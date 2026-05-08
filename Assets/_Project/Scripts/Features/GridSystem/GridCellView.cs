@@ -59,6 +59,7 @@ public class GridCellView : MonoBehaviour, IPoolable<IMemoryPool>
         }
     }
     public void IncreaseScale(Vector3 scale, float duration) => transform.DOScale(scale, duration).SetEase(Ease.OutBounce);
+    public void AnimateMove(float target, float duration) => transform.DOMoveY(target, duration).SetEase(Ease.OutBack);
     public void AnimateGoalGrid() => transform.DOScale(0.8f, 0.5f).SetLoops(-1, LoopType.Yoyo);
     private void SetColor(Color color) => _meshRenderer.material.color = color;
     public void OnSpawned(IMemoryPool pool)

@@ -55,9 +55,9 @@ public class BoardManager : MonoBehaviour
         if (signal.GridStatus == GridStatus.Goal)
             ProcessGoalReachedSequence().Forget();
     }
-    public void SetupBoard(LevelData levelData)
+    public async UniTask TestSetupBoard(LevelData _levelData)
     {
-        _currentLevel = levelData;
+        _currentLevel = _levelData;
 
         _allGrid = new GridCell[_currentLevel.Width, _currentLevel.Height];
 
@@ -69,16 +69,17 @@ public class BoardManager : MonoBehaviour
                 GridCell cell = new GridCell(id, j, i, GridType.Switchable, GridStatus.Safe);
                 cell.SetGridStatus(GridStatus.Safe);
 
-                _allGrid[j,i] = cell;
+                _allGrid[j, i] = cell;
                 _allGridList.Add(cell);
 
                 var grid = _gridPool.Spawn(_gridPool);
-                var spawnPosition = new Vector3(j, 0f, i);
+                var spawnPosition = new Vector3(j, _data.SpawnY, i);
 
                 grid.name = $"Grid[{j},{i}]";
-                grid.transform.localScale = Vector3.zero;
                 grid.Configure(cell, spawnPosition);
-                grid.IncreaseScale(Vector3.one, _data.IncreaseDuration);
+                grid.AnimateMove(_data.TargetY, _data.SpawnPerDuration);
+
+                await UniTask.Delay(TimeSpan.FromSeconds(_data.SpawnPerDuration));
             }
         }
     }

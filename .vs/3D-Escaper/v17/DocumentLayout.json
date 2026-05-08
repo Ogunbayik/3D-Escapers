@@ -3,15 +3,47 @@
   "WorkspaceRootPath": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|c:\\users\\ogun\\unityprojects\\3d-escaper\\assets\\_project\\scripts\\features\\gridsystem\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\gridsystem\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\data\\boarddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\data\\boarddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\states\\playeridlestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\player\\states\\playeridlestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\flowmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\flowmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\infrastructure\\gameconst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\infrastructure\\gameconst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\gridsystem\\gridcellview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\gridsystem\\gridcellview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\data\\leveldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\data\\leveldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\playerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\player\\playerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\states\\playergroundedstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\player\\states\\playergroundedstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|c:\\users\\ogun\\unityprojects\\3d-escaper\\assets\\_project\\scripts\\features\\player\\states\\playerfallstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\states\\playerfallstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\player\\states\\playerfallstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|c:\\users\\ogun\\unityprojects\\3d-escaper\\assets\\_project\\scripts\\features\\player\\states\\playerairbornestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\states\\playerairbornestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\player\\states\\playerairbornestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,24 +51,8 @@
       "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\player\\playerinstaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\playerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\player\\playerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\infrastructure\\gameconst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\infrastructure\\gameconst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\states\\playerbasestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\player\\states\\playerbasestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\gridsystem\\gridcellview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\gridsystem\\gridcellview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\states\\playeridlestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\player\\states\\playeridlestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\states\\playermovementstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -49,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\infrastructure\\gameenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\infrastructure\\gameenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\gridsystem\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\gridsystem\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\playervisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -69,14 +81,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\features\\player\\states\\playerdeathstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\features\\player\\states\\playerdeathstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\flowmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\flowmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\data\\boarddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\data\\boarddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\infrastructure\\menumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -129,10 +133,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\data\\playerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\data\\playerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\assets\\_project\\scripts\\data\\leveldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93CE38BD-075C-E9C0-BF45-140CD47F2891}|Assembly-CSharp.csproj|solutionrelative:assets\\_project\\scripts\\data\\leveldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -142,75 +142,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PlayerFallState.cs",
-              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerFallState.cs",
-              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerFallState.cs",
-              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerFallState.cs",
-              "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerFallState.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwAUAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T16:26:09.647Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GridCellView.cs",
-              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\GridSystem\\GridCellView.cs",
-              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\GridSystem\\GridCellView.cs",
-              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\GridSystem\\GridCellView.cs",
-              "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\GridSystem\\GridCellView.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAcwC4AAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T14:18:48.784Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 0,
               "Title": "BoardManager.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\GridSystem\\BoardManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\GridSystem\\BoardManager.cs",
               "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\GridSystem\\BoardManager.cs",
               "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\GridSystem\\BoardManager.cs",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAcwKwAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAADgv08AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T13:19:13.616Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PlayerBase.cs",
-              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\PlayerBase.cs",
-              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\PlayerBase.cs",
-              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\PlayerBase.cs",
-              "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\Player\\PlayerBase.cs",
-              "ViewState": "AgIAAHEAAAAAAAAAAADgv2sAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T12:31:39.585Z",
+              "WhenOpened": "2026-05-06T13:19:13.616Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PlayerGroundedState.cs",
-              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerGroundedState.cs",
-              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerGroundedState.cs",
-              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerGroundedState.cs",
-              "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerGroundedState.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T13:52:04.122Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "PlayerIdleState.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerIdleState.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerIdleState.cs",
@@ -218,11 +167,12 @@
               "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerIdleState.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAowBgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T13:55:07.774Z"
+              "WhenOpened": "2026-05-06T13:55:07.774Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "PlayerBaseState.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerBaseState.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerBaseState.cs",
@@ -230,12 +180,11 @@
               "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerBaseState.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T10:46:02.726Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T10:46:02.726Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "PlayerAirborneState.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerAirborneState.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerAirborneState.cs",
@@ -243,12 +192,11 @@
               "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerAirborneState.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAYwCIAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T12:45:05.568Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-04T12:45:05.568Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "PlayerInstaller.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\PlayerInstaller.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\PlayerInstaller.cs",
@@ -256,25 +204,111 @@
               "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\Player\\PlayerInstaller.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAQwBgAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T13:45:21.974Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-06T13:45:21.974Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "GameConst.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Infrastructure\\GameConst.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Infrastructure\\GameConst.cs",
               "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Infrastructure\\GameConst.cs",
               "RelativeToolTip": "Assets\\_Project\\Scripts\\Infrastructure\\GameConst.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAADgvxsAAABQAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAvwCYAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-05T20:17:06.622Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 6,
+              "Title": "LevelData.cs",
+              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Data\\LevelData.cs",
+              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Data\\LevelData.cs",
+              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Data\\LevelData.cs",
+              "RelativeToolTip": "Assets\\_Project\\Scripts\\Data\\LevelData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T19:26:15.838Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FlowManager.cs",
+              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\FlowManager.cs",
+              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\FlowManager.cs",
+              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\FlowManager.cs",
+              "RelativeToolTip": "Assets\\_Project\\Scripts\\FlowManager.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAqwCoAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-05T12:59:04.427Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GridCellView.cs",
+              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\GridSystem\\GridCellView.cs",
+              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\GridSystem\\GridCellView.cs",
+              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\GridSystem\\GridCellView.cs",
+              "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\GridSystem\\GridCellView.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwA0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T14:18:48.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BoardData.cs",
+              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Data\\BoardData.cs",
+              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Data\\BoardData.cs",
+              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Data\\BoardData.cs",
+              "RelativeToolTip": "Assets\\_Project\\Scripts\\Data\\BoardData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T20:51:38.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PlayerGroundedState.cs",
+              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerGroundedState.cs",
+              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerGroundedState.cs",
+              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerGroundedState.cs",
+              "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerGroundedState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwBQAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T13:52:04.122Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PlayerBase.cs",
+              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\PlayerBase.cs",
+              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\PlayerBase.cs",
+              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\PlayerBase.cs",
+              "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\Player\\PlayerBase.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAMwEIAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T12:31:39.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PlayerFallState.cs",
+              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerFallState.cs",
+              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerFallState.cs",
+              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerFallState.cs",
+              "RelativeToolTip": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerFallState.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T16:26:09.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "PlayerHealth.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\PlayerHealth.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\PlayerHealth.cs",
@@ -286,7 +320,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "PlayerMovementState.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerMovementState.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerMovementState.cs",
@@ -298,7 +332,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "PlayerVisual.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\PlayerVisual.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\PlayerVisual.cs",
@@ -310,7 +344,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "GameSignal.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Infrastructure\\GameSignal.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Infrastructure\\GameSignal.cs",
@@ -322,7 +356,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "SignalInstaller.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Infrastructure\\Installer\\SignalInstaller.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Infrastructure\\Installer\\SignalInstaller.cs",
@@ -334,7 +368,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "PlayerDeathState.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerDeathState.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerDeathState.cs",
@@ -346,19 +380,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "FlowManager.cs",
-              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\FlowManager.cs",
-              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\FlowManager.cs",
-              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\FlowManager.cs",
-              "RelativeToolTip": "Assets\\_Project\\Scripts\\FlowManager.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAAwC8AAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T12:59:04.427Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "GameEnum.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Infrastructure\\GameEnum.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Infrastructure\\GameEnum.cs",
@@ -370,19 +392,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "BoardData.cs",
-              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Data\\BoardData.cs",
-              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Data\\BoardData.cs",
-              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Data\\BoardData.cs",
-              "RelativeToolTip": "Assets\\_Project\\Scripts\\Data\\BoardData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T20:51:38.055Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "MenuManager.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Infrastructure\\MenuManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Infrastructure\\MenuManager.cs",
@@ -394,7 +404,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "LevelManager.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\LevelManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\LevelManager.cs",
@@ -406,7 +416,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "GameInstaller.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Infrastructure\\Installer\\GameInstaller.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Infrastructure\\Installer\\GameInstaller.cs",
@@ -418,7 +428,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "InputService.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\InputService.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\InputService.cs",
@@ -430,7 +440,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "PlayerHUD.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\PlayerHUD.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\PlayerHUD.cs",
@@ -442,7 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "ISaveService.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\ISaveService.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\ISaveService.cs",
@@ -454,7 +464,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "SaveService.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Infrastructure\\SaveService.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Infrastructure\\SaveService.cs",
@@ -466,7 +476,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "PlayerStateMachine.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Core\\States\\PlayerStateMachine.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Core\\States\\PlayerStateMachine.cs",
@@ -478,7 +488,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "PlayerMenuIdleState.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerMenuIdleState.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Features\\Player\\States\\PlayerMenuIdleState.cs",
@@ -490,7 +500,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "CameraManager.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\CameraManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\CameraManager.cs",
@@ -502,7 +512,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "GameUtilis.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Infrastructure\\GameUtilis.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Infrastructure\\GameUtilis.cs",
@@ -514,7 +524,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "AnimationController.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\AnimationController.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\AnimationController.cs",
@@ -526,7 +536,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "PlayerData.cs",
               "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Data\\PlayerData.cs",
               "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Data\\PlayerData.cs",
@@ -535,18 +545,6 @@
               "ViewState": "AgIAABkAAAAAAAAAAAAMwB0AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-19T13:21:26.47Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "LevelData.cs",
-              "DocumentMoniker": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Data\\LevelData.cs",
-              "RelativeDocumentMoniker": "Assets\\_Project\\Scripts\\Data\\LevelData.cs",
-              "ToolTip": "C:\\Users\\ogun\\UnityProjects\\3D-Escaper\\Assets\\_Project\\Scripts\\Data\\LevelData.cs",
-              "RelativeToolTip": "Assets\\_Project\\Scripts\\Data\\LevelData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-01T19:26:15.838Z"
             }
           ]
         }

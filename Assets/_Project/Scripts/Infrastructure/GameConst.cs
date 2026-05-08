@@ -35,7 +35,8 @@ public static class GameConst
     {
         public const float INITIAL_DELAY = 1.5f;           
         public const float CAMERA_TRANSITION_TIME = 2f;  
-        public const float BOARD_SETUP_DELAY = 1f;       
+        public const float BOARD_SETUP_DELAY = 1f;
+        public const float DISPLAY_HEALTH_DELAY = 2f;
         public const float PLAYER_TELEPORT_DELAY = 0.5f;
         public const float GAMEPLAY_START_DELAY = 2f;
     }

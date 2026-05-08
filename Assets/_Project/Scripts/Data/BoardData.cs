@@ -6,10 +6,14 @@ public class BoardData : ScriptableObject
     [Header("Board Settings")]
     [SerializeField] private float _goalEffectDelay;
     [SerializeField] private float _nextGoalDelay;
-    [Header("Grid Settings")]
-    [SerializeField] private float _increaseDuration;
+    [Header("Spawn Settings")]
+    [SerializeField] private float _spawnPerDuration;
+    [SerializeField] private float _spawnY;
+    [SerializeField] private float _targetY;
 
     public float GoalEffectDelay => _goalEffectDelay;
     public float NextGoalDelay => _nextGoalDelay;
-    public float IncreaseDuration => _increaseDuration;
+    public float SpawnPerDuration => _spawnPerDuration;
+    public float SpawnY => _spawnY;
+    public float TargetY => _targetY;
 }

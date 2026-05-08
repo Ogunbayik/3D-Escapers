@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _goalEffectDelay: 0.4
   _nextGoalDelay: 0.5
-  _increaseDuration: 2
+  _spawnPerDuration: 0.05
+  _spawnY: 2
+  _targetY: 0
