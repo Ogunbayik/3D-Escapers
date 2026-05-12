@@ -116,14 +116,15 @@ public class BoardManager : MonoBehaviour
     private async UniTask ProcessGoalReachedSequence()
     {
         ResetGoalGrid();
-        //TODO Some effect for reach
+
         var spawnPosition = new Vector3(_goalGrid.Width, 0f, _goalGrid.Height);
         _VFXManager.PlayGoalEffect(spawnPosition);
+        _scoreManager.AddScore(_activeLevelData.ScorePerGoal);
 
         await UniTask.Delay(TimeSpan.FromSeconds(_data.GoalEffectDelay));
 
-        _scoreManager.AddScore(_activeLevelData.ScorePerGoal);
-        CreateNewGoalGrid();
+        if (!_scoreManager.IsReachedScore())
+            CreateNewGoalGrid();
 
         await UniTask.Delay(TimeSpan.FromSeconds(_data.NextGoalDelay));
     }
@@ -185,9 +186,6 @@ public class BoardManager : MonoBehaviour
     }
     public void CreateNewGoalGrid()
     {
-        if (_scoreManager.IsReachedScore())
-            return;
-
         _goalGrid = GetDifferentGoalGrid();
         ActivateGoalGrid();
     }
