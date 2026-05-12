@@ -21,6 +21,11 @@ public static class GameSignal
     //Level Signals
     public class OnLevelCompleted { }
     public class OnLevelScoreReached { }
+    public class OnCollectableItemCollected
+    {
+        public CollectibleItem CollectableItem;
+        public OnCollectableItemCollected(CollectibleItem collectableItem) => CollectableItem = collectableItem;
+    }
     public class OnLevelDataChanged
     {
         public LevelData LevelData;

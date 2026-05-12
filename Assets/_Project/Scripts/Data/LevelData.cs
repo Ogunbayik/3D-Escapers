@@ -16,7 +16,7 @@ public class LevelData : ScriptableObject
     [SerializeField] private int _reachScore;
 
     [Header("Prefab References")]
-    [SerializeField] private CollectableItem _collectableItem;
+    [SerializeField] private CollectibleItem _collectableItem;
 
     [Header("Lethal Groups")]
     [SerializeField] private List<CellGroup> _lethalGroups;
@@ -27,7 +27,7 @@ public class LevelData : ScriptableObject
     public float LethalDuration => _lethalDuration;
     public int ScorePerGoal => _scorePerGoal;
     public int ReachScore => _reachScore;
-    public CollectableItem CollectableItem => _collectableItem;
+    public CollectibleItem CollectableItem => _collectableItem;
     public List<CellGroup> LethalGroups => _lethalGroups;
     
 }

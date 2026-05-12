@@ -9,10 +9,13 @@ using DG.Tweening;
 
 public class BoardManager : MonoBehaviour
 {
+    private CollectibleItemFactory _collectibleFactory;
+
     private GridCellView.Pool _gridPool;
 
     private VFXManager _VFXManager;
     private ScoreManager _scoreManager;
+    private LevelManager _levelManager;
     private SignalBus _signalBus;
 
     public List<GridCell> _lethalGrids = new List<GridCell>();
@@ -22,6 +25,10 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private GridCellView _gridPrefab;
     [Header("Data Settings")]
     [SerializeField] private BoardData _data;
+    [Header("Transform References")]
+    [SerializeField] private Transform _spawnPosition;
+
+    private LevelData _activeLevelData;
 
     private GridCell[,] _allGrid;
 
@@ -30,42 +37,49 @@ public class BoardManager : MonoBehaviour
     //TODO Level için gereklilikler
     private int _groupIndex = 0;
 
-    private LevelData _currentLevel = null;
-
     private bool _isSequenceActive = false;
 
     [Inject]
-    public void Construct(SignalBus signalBus, ScoreManager scoreManager, VFXManager VFXManager, GridCellView.Pool gridPool)
+    public void Construct(SignalBus signalBus,
+        ScoreManager scoreManager,
+        VFXManager VFXManager,
+        LevelManager levelManager,
+        GridCellView.Pool gridPool,
+        CollectibleItemFactory collectibleItemFactory)
     {
         _signalBus = signalBus;
         _scoreManager = scoreManager;
         _VFXManager = VFXManager;
+        _levelManager = levelManager;
         _gridPool = gridPool;
+        _collectibleFactory = collectibleItemFactory;
     }
     private void OnEnable()
     {
         _signalBus.Subscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusReached);
+        _signalBus.Subscribe<GameSignal.OnLevelScoreReached>(CreateCollectibleItem);
     }
     private void OnDisable()
     {
         _signalBus.Unsubscribe<GameSignal.OnPlayerGridStatus>(OnPlayerGridStatusReached);
+        _signalBus.Unsubscribe<GameSignal.OnLevelScoreReached>(CreateCollectibleItem);
     }
     private void OnPlayerGridStatusReached(GameSignal.OnPlayerGridStatus signal)
     {
         if (signal.GridStatus == GridStatus.Goal)
             ProcessGoalReachedSequence().Forget();
     }
-    public async UniTask TestSetupBoard(LevelData _levelData)
+    public async UniTask SetupBoard(LevelData levelData)
     {
-        _currentLevel = _levelData;
+        _activeLevelData = levelData;
 
-        _allGrid = new GridCell[_currentLevel.Width, _currentLevel.Height];
+        _allGrid = new GridCell[levelData.Width, levelData.Height];
 
-        for (int i = 0; i < _currentLevel.Height; i++)
+        for (int i = 0; i < levelData.Height; i++)
         {
-            for (int j = 0; j < _currentLevel.Width; j++)
+            for (int j = 0; j < levelData.Width; j++)
             {
-                int id = i * _currentLevel.Width + j;
+                int id = i * levelData.Width + j;
                 GridCell cell = new GridCell(id, j, i, GridType.Switchable, GridStatus.Safe);
                 cell.SetGridStatus(GridStatus.Safe);
 
@@ -96,7 +110,7 @@ public class BoardManager : MonoBehaviour
         {
             ClearLethalCells();
             SetNextLethalGroup();
-            await UniTask.Delay(TimeSpan.FromSeconds(_currentLevel.LethalDuration), cancellationToken: token);
+            await UniTask.Delay(TimeSpan.FromSeconds(_activeLevelData.LethalDuration), cancellationToken: token);
         }
     }
     private async UniTask ProcessGoalReachedSequence()
@@ -108,7 +122,7 @@ public class BoardManager : MonoBehaviour
 
         await UniTask.Delay(TimeSpan.FromSeconds(_data.GoalEffectDelay));
 
-        _scoreManager.AddScore(_currentLevel.ScorePerGoal);
+        _scoreManager.AddScore(_activeLevelData.ScorePerGoal);
         CreateNewGoalGrid();
 
         await UniTask.Delay(TimeSpan.FromSeconds(_data.NextGoalDelay));
@@ -124,12 +138,18 @@ public class BoardManager : MonoBehaviour
                 cell.SetGridStatus(GridStatus.Safe);
         }
     }
+    private void CreateCollectibleItem()
+    {
+        var collectibleItem = _activeLevelData.CollectableItem;
+
+        _collectibleFactory.Create(collectibleItem, _spawnPosition.position);
+    }
     public void SetNextLethalGroup()
     {
         _lethalGrids.Clear();
 
         //TODO System changing for level
-        foreach (var cell in _currentLevel.LethalGroups)
+        foreach (var cell in _activeLevelData.LethalGroups)
         {
             if(cell.GroupID == _groupIndex)
             {
@@ -155,7 +175,7 @@ public class BoardManager : MonoBehaviour
     {
         _groupIndex++;
 
-        if (_groupIndex >= _currentLevel.LethalGroups.Count)
+        if (_groupIndex >= _activeLevelData.LethalGroups.Count)
             _groupIndex = 0;
     }
     public void InitialGoalGrid()
@@ -199,8 +219,8 @@ public class BoardManager : MonoBehaviour
     public GridCell GetRandomGrid()
     {
         //This is for Goal Cell
-        var randomWidth = UnityEngine.Random.Range(0, _currentLevel.Width);
-        var randomHeight = UnityEngine.Random.Range(0, _currentLevel.Height);
+        var randomWidth = UnityEngine.Random.Range(0, _activeLevelData.Width);
+        var randomHeight = UnityEngine.Random.Range(0, _activeLevelData.Height);
 
         var grid = _allGrid[randomWidth, randomHeight];
         return grid;

@@ -36,7 +36,7 @@ public class FlowManager
 
         await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.CAMERA_TRANSITION_TIME));
 
-        _boardManager.TestSetupBoard(_levelManager.ActiveLevelData).Forget();
+        _boardManager.SetupBoard(_levelManager.ActiveLevelData).Forget();
 
         await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.BOARD_SETUP_DELAY));
 

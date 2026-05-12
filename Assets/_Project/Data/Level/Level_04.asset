@@ -18,7 +18,7 @@ MonoBehaviour:
   _lethalDuration: 0.3
   _scorePerGoal: 10
   _reachScore: 100
-  _collectableItem: {fileID: 4876868744504736342, guid: e4b4fba4eed2fd44697e5036200b6d99,
+  _collectableItem: {fileID: 813113751981627776, guid: acc88add9b9e4d44987a515337b2d9aa,
     type: 3}
   _lethalGroups:
   - GroupID: 0

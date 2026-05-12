@@ -11,6 +11,8 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private ScoreUIController _scoreUIController;
     public override void InstallBindings()
     {
+        Container.Bind<CollectibleItemFactory>().AsSingle();
+
         Container.Bind<IInputService>().To<InputService>().AsSingle();
         Container.Bind<ISaveService>().To<SaveService>().AsSingle();
 

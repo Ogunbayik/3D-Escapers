@@ -26,6 +26,9 @@ public class SignalInstaller : MonoInstaller
 
         //Score Signals
         Container.DeclareSignal<GameSignal.OnGameScoreChanged>();
+
+        //CollectibleItem
+        Container.DeclareSignal<GameSignal.OnCollectableItemCollected>();
         
     }
 }

@@ -1394,6 +1394,7 @@ MonoBehaviour:
   _gridPrefab: {fileID: -1958814179904538496, guid: 5fe3795a5624b064bb372bcbe7c6d2e7,
     type: 3}
   _data: {fileID: 11400000, guid: 590fdb5585cbdf24ca1c6d7f05260956, type: 2}
+  _spawnPosition: {fileID: 886608079}
 --- !u!1 &735938469
 GameObject:
   m_ObjectHideFlags: 0
