@@ -22,6 +22,7 @@ public class SignalInstaller : MonoInstaller
         Container.DeclareSignal<GameSignal.OnLevelInitializing>();
         Container.DeclareSignal<GameSignal.OnLevelStarted>();
         Container.DeclareSignal<GameSignal.OnLevelDataChanged>();
+        Container.DeclareSignal<GameSignal.OnLevelScoreReached>();
 
         //Score Signals
         Container.DeclareSignal<GameSignal.OnGameScoreChanged>();

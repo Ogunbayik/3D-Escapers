@@ -108,7 +108,7 @@ public class BoardManager : MonoBehaviour
 
         await UniTask.Delay(TimeSpan.FromSeconds(_data.GoalEffectDelay));
 
-        _scoreManager.IncreaseScore(_currentLevel.ScorePerGoal);
+        _scoreManager.AddScore(_currentLevel.ScorePerGoal);
         CreateNewGoalGrid();
 
         await UniTask.Delay(TimeSpan.FromSeconds(_data.NextGoalDelay));
@@ -165,6 +165,9 @@ public class BoardManager : MonoBehaviour
     }
     public void CreateNewGoalGrid()
     {
+        if (_scoreManager.IsReachedScore())
+            return;
+
         _goalGrid = GetDifferentGoalGrid();
         ActivateGoalGrid();
     }

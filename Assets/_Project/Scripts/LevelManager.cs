@@ -32,10 +32,12 @@ public class LevelManager : MonoBehaviour
     }
     private void OnEnable()
     {
+        _signalBus.Subscribe<GameSignal.OnLevelScoreReached>(ToggleCollectableItem);
         _signalBus.Subscribe<GameSignal.OnLevelCompleted>(OnLevelComplete);
     }
     private void OnDisable()
     {
+        _signalBus.Unsubscribe<GameSignal.OnLevelScoreReached>(ToggleCollectableItem);
         _signalBus.Unsubscribe<GameSignal.OnLevelCompleted>(OnLevelComplete);
     }
     public void OnLevelComplete()
@@ -53,5 +55,11 @@ public class LevelManager : MonoBehaviour
             return;
 
         _activeLevelData = newLevelData;
+    }
+    public void ToggleCollectableItem()
+    {
+        var collectableItem = _activeLevelData.CollectableItem;
+        var item = Instantiate(collectableItem);
+        collectableItem.transform.position = Vector3.zero;
     }
 }

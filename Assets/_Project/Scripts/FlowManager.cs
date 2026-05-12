@@ -11,20 +11,23 @@ public class FlowManager
     private CameraManager _cameraManager;
     private BoardManager _boardManager;
     private LevelManager _levelManager;
+    private ScoreManager _scoreManager;
     private SignalBus _signalBus;
 
-    public FlowManager(MenuManager menuManager, CameraManager cameraManager, BoardManager boardManager, LevelManager levelManager, SignalBus signalBus)
+    public FlowManager(MenuManager menuManager, CameraManager cameraManager, BoardManager boardManager, LevelManager levelManager, ScoreManager scoreManager, SignalBus signalBus)
     {
         _menuManager = menuManager;
         _cameraManager = cameraManager;
         _boardManager = boardManager;
         _levelManager = levelManager;
+        _scoreManager = scoreManager;
         _signalBus = signalBus;
     }
     public void OnLevelInitializing() => LevelStartSequence().Forget();
     public async UniTask LevelStartSequence()
     {
         _menuManager.ToggleMenuCanvas(false);
+        _scoreManager.SetReachScore(_levelManager.ActiveLevelData.ReachScore);
 
         await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.INITIAL_DELAY));
 

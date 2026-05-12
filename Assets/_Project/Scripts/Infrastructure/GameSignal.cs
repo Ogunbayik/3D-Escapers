@@ -20,6 +20,7 @@ public static class GameSignal
 
     //Level Signals
     public class OnLevelCompleted { }
+    public class OnLevelScoreReached { }
     public class OnLevelDataChanged
     {
         public LevelData LevelData;
