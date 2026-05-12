@@ -143,7 +143,8 @@ public class BoardManager : MonoBehaviour
     {
         var collectibleItem = _activeLevelData.CollectableItem;
 
-        _collectibleFactory.Create(collectibleItem, _spawnPosition.position);
+        var item = _collectibleFactory.Create(collectibleItem, _spawnPosition.position);
+        item.PlayIdleAnimation();
     }
     public void SetNextLethalGroup()
     {
