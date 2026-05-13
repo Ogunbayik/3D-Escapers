@@ -71,6 +71,7 @@ public class PlayerBase : MonoBehaviour
         }
     }
     public void AlignToMenuPose() => _visual.Body.rotation = Quaternion.Euler(_data.MenuPoseRotation);
+    public void AlignToVictoryPose() => _visual.Body.rotation = Quaternion.Euler(new Vector3(0f, 220f, 0f));
     public void CheckGrid()
     {
         int gridCount = Physics.OverlapSphereNonAlloc(_checkTransform.position, _data.CheckDistance, _results, _gridLayer);

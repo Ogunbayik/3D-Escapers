@@ -23,6 +23,7 @@ public class PlayerInstaller : MonoInstaller
         Container.Bind<IState>().To<PlayerDeathState>().AsSingle();
         Container.Bind<IState>().To<PlayerMenuIdleState>().AsSingle();
         Container.Bind<IState>().To<PlayerFallState>().AsSingle();
+        Container.Bind<IState>().To<PlayerVictoryState>().AsSingle();
 
         Container.Bind<AnimationController>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerStateMachine>().AsSingle().NonLazy();
@@ -39,5 +40,8 @@ public class PlayerInstaller : MonoInstaller
             .ToMethod<PlayerStateMachine>(x => x.OnPlayerHealthDepleted)
             .FromResolve();
 
+        Container.BindSignal<GameSignal.OnCollectableItemCollected>()
+            .ToMethod<PlayerStateMachine>(x => x.OnPlayerCollectItem)
+            .FromResolve();
     }
 }
