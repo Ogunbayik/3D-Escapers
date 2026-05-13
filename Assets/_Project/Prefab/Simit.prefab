@@ -152,14 +152,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: Gevrek Simit
   _itemID: 2
-  _idleMoveDistance: 1.5
-  _idleCycleDuration: 1.5
-  _waitDuration: 0.1
+  _idleMoveDistance: 2
+  _idleCycleDuration: 2
+  _idleRotation: {x: 0, y: 360, z: 0}
   _riseDistance: 2.5
   _riseDuration: 3
   _riseRotation: {x: 0, y: 1080, z: 0}
-  _rotationDuration: 3
   _scaleUpValue: 2
-  _scaleUpDuration: 3
+  _scaleUpDuration: 2
   _scaleDownValue: 0.1
   _scaleDownDuration: 0.5

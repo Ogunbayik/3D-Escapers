@@ -16,6 +16,7 @@ public static class GameConst
         public const string PLAYER_JUMP = "Player_Jump";
         public const string PLAYER_DEATH = "Player_Death";
         public const string PLAYER_FALL = "Player_Fall";
+        public const string PLAYER_VICTORY = "Player_Victory";
         //Menu Animations
         public const string PLAYER_SHRUGGING = "Player_Menu_Shrugging";
         public const string PLAYER_LOOKOVERSHOULDER = "Player_Menu_Look_Over_Shoulder";
@@ -26,6 +27,7 @@ public static class GameConst
         public static readonly int JUMP_HASH = Animator.StringToHash(PLAYER_JUMP);
         public static readonly int DEATH_HASH = Animator.StringToHash(PLAYER_DEATH);
         public static readonly int FALL_HASH = Animator.StringToHash(PLAYER_FALL);
+        public static readonly int VICTORY_HASH = Animator.StringToHash(PLAYER_VICTORY);
         //Menu Animations
         public static readonly int SHRUGGING_HASH = Animator.StringToHash(PLAYER_SHRUGGING);
         public static readonly int LOOKOVERSHOULDER_HASH = Animator.StringToHash(PLAYER_LOOKOVERSHOULDER);

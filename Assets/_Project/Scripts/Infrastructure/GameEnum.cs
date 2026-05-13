@@ -30,5 +30,6 @@ public enum CameraType
     Game,
     Dead,
     Menu,
-    Transition
+    Transition,
+    Victory
 }

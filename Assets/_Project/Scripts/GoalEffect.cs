@@ -15,8 +15,6 @@ public class GoalEffect : MonoBehaviour, IPoolable<IMemoryPool>
     {
         _pool = pool;
 
-        Debug.Log("Spawned");
-
         if(_particleSystem != null)
         {
             _particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);

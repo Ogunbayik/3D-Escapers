@@ -38,5 +38,6 @@ public class PlayerInstaller : MonoInstaller
         Container.BindSignal<GameSignal.OnPlayerDead>()
             .ToMethod<PlayerStateMachine>(x => x.OnPlayerHealthDepleted)
             .FromResolve();
+
     }
 }
