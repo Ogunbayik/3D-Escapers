@@ -39,6 +39,8 @@ public class BoardManager : MonoBehaviour
 
     private bool _isSequenceActive = false;
 
+    public BoardData Data => _data;
+
     [Inject]
     public void Construct(SignalBus signalBus,
         ScoreManager scoreManager,

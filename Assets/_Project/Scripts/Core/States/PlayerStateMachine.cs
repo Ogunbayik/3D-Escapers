@@ -27,5 +27,5 @@ public class PlayerStateMachine : IInitializable, ITickable
     }
     public void OnPlayerHealthDepleted() => SwitchState<PlayerDeathState>();
     public void OnPlayerActivateControl() => SwitchState<PlayerIdleState>();
-    public void OnPlayerCollectItem() => SwitchState<PlayerVictoryState>();
+    public void OnPlayerVictory() => SwitchState<PlayerVictoryState>();
 }

@@ -24,10 +24,12 @@ public class FlowManager
         _signalBus = signalBus;
     }
     public void OnLevelInitializing() => LevelStartSequence().Forget();
+    public void OnLevelCompleting() => LevelCompleteSequence().Forget();
     public async UniTask LevelStartSequence()
     {
         _menuManager.ToggleMenuCanvas(false);
         _scoreManager.SetReachScore(_levelManager.ActiveLevelData.ReachScore);
+        _signalBus.Fire(new GameSignal.OnPlayerTeleportRequested(_boardManager.Data.GameStartPosition));
 
         await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.INITIAL_DELAY));
 
@@ -54,5 +56,10 @@ public class FlowManager
         _boardManager.StartLethalSequence();
 
         _signalBus.Fire(new GameSignal.OnLevelStarted());
+    }
+
+    public async UniTask LevelCompleteSequence()
+    {
+        _cameraManager.SwitchCamera(CameraType.Victory);
     }
 }

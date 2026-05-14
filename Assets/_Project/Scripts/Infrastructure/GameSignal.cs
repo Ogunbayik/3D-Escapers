@@ -1,4 +1,4 @@
-
+using UnityEngine;
 
 public static class GameSignal 
 {
@@ -21,11 +21,6 @@ public static class GameSignal
     //Level Signals
     public class OnLevelCompleted { }
     public class OnLevelScoreReached { }
-    public class OnCollectableItemCollected
-    {
-        public CollectibleItem CollectableItem;
-        public OnCollectableItemCollected(CollectibleItem collectableItem) => CollectableItem = collectableItem;
-    }
     public class OnLevelDataChanged
     {
         public LevelData LevelData;
@@ -45,4 +40,9 @@ public static class GameSignal
     public class OnLevelStarted { }
     //Player Signals
     public class OnPlayerDead { }
+    public class OnPlayerTeleportRequested
+    {
+        public Vector3 TeleportPosition;
+        public OnPlayerTeleportRequested(Vector3 teleportPosition) => TeleportPosition = teleportPosition;
+    }
 }

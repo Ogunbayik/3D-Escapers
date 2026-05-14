@@ -54,14 +54,14 @@ public class PlayerVisual : MonoBehaviour
         hitSequence.Append(_meshRenderer.material.DOColor(_hitColor, PlayerBaseColorProp, _changeDuration * _changeMultiply));
         hitSequence.Append(_meshRenderer.material.DOColor(_originalColor, PlayerBaseColorProp, _changeDuration));
     }
-    public void PlayTeleportSequence() => ExecuteTeleportSequence().Forget();
-    public async UniTask ExecuteTeleportSequence()
+    public void PlayTeleportSequence(GameSignal.OnPlayerTeleportRequested signal) => ExecuteTeleportSequence(signal).Forget();
+    public async UniTask ExecuteTeleportSequence(GameSignal.OnPlayerTeleportRequested signal)
     {
         AnimateDissolve(GameConst.ShaderProperties.DISSOLVE_DISAPPEAR_VALUE, _dissolveDuration);
 
         await UniTask.Delay(System.TimeSpan.FromSeconds(_disapperDelay));
 
-        transform.position = _startPosition.position;
+        transform.position = signal.TeleportPosition;
 
         await UniTask.Delay(System.TimeSpan.FromSeconds(_teleportDelay));
 

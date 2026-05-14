@@ -122,6 +122,11 @@ public class PlayerBase : MonoBehaviour
 
         return direction;
     }
+    public void ResetMovement()
+    {
+        var direction = Vector3.zero;
+        Move(direction);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

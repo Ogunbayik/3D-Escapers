@@ -28,7 +28,7 @@ public class PlayerInstaller : MonoInstaller
         Container.Bind<AnimationController>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerStateMachine>().AsSingle().NonLazy();
 
-        Container.BindSignal<GameSignal.OnLevelInitializing>()
+        Container.BindSignal<GameSignal.OnPlayerTeleportRequested>()
             .ToMethod<PlayerVisual>(x => x.PlayTeleportSequence)
             .FromResolve();
 
@@ -40,8 +40,8 @@ public class PlayerInstaller : MonoInstaller
             .ToMethod<PlayerStateMachine>(x => x.OnPlayerHealthDepleted)
             .FromResolve();
 
-        Container.BindSignal<GameSignal.OnCollectableItemCollected>()
-            .ToMethod<PlayerStateMachine>(x => x.OnPlayerCollectItem)
+        Container.BindSignal<GameSignal.OnLevelCompleted>()
+            .ToMethod<PlayerStateMachine>(x => x.OnPlayerVictory)
             .FromResolve();
     }
 }

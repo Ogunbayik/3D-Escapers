@@ -17,3 +17,5 @@ MonoBehaviour:
   _spawnPerDuration: 0.05
   _spawnY: 2
   _targetY: 0
+  _menuPosition: {x: 20, y: 15, z: -23}
+  _gameStartPosition: {x: 3.5, y: 0, z: -10}

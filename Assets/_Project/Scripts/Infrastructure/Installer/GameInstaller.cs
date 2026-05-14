@@ -9,8 +9,11 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private LevelManager _levelManager;
     [SerializeField] private MenuManager _menuManager;
     [SerializeField] private ScoreUIController _scoreUIController;
+    [SerializeField] private PlayerFacade _playerFacade;
     public override void InstallBindings()
     {
+        Container.BindInstance(_playerFacade).AsSingle();
+
         Container.Bind<CollectibleItemFactory>().AsSingle();
 
         Container.Bind<IInputService>().To<InputService>().AsSingle();
@@ -31,14 +34,15 @@ public class GameInstaller : MonoInstaller
           .ToMethod<CameraManager>(x => x.OnPlayerDead)
           .FromResolve();
 
-        Container.BindSignal<GameSignal.OnCollectableItemCollected>()
-            .ToMethod<CameraManager>(x => x.OnPlayerVictory)
-            .FromResolve();
-
         //Flow Methods
         Container.BindSignal<GameSignal.OnLevelInitializing>()
           .ToMethod<FlowManager>(x => x.OnLevelInitializing)
           .FromResolve();
+
+        Container.BindSignal<GameSignal.OnLevelCompleted>()
+            .ToMethod<FlowManager>(x => x.OnLevelCompleting)
+            .FromResolve();
+
 
         Container.BindSignal<GameSignal.OnGameScoreChanged>()
             .ToMethod<ScoreUIController>(x => x.UpdateScoreText)

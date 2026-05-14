@@ -35,7 +35,7 @@ public class CollectibleItem : MonoBehaviour
             _isCollected = true;
 
             PlayCollectAnimation();
-            _signalBus.Fire(new GameSignal.OnCollectableItemCollected(this));
+            _signalBus.Fire(new GameSignal.OnLevelCompleted());
         }
     }
     public void PlayIdleAnimation()
