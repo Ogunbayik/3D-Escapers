@@ -40,6 +40,7 @@ public static class GameSignal
     public class OnLevelStarted { }
     //Player Signals
     public class OnPlayerDead { }
+    public class OnVictorySequenceStarted { }
     public class OnPlayerTeleportRequested
     {
         public Vector3 TeleportPosition;

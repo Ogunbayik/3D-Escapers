@@ -1,7 +1,9 @@
 using Cinemachine;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -38,12 +40,21 @@ public class CameraManager : MonoBehaviour
             case CameraType.Victory: _victoryCamera.Priority =20; break;
         }
     }
-    public void OnTransitionStart()
+    public async UniTask PlayPathTransition(bool forward, float duration = 3f)
     {
         var dolly = _transitionCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
-        var maxPath = _transitionCamera.GetCinemachineComponent<CinemachineTrackedDolly>().m_Path.MaxPos;
-        var transitionDuration = 3f;
+        var path = dolly.m_Path;
 
-        DOTween.To(() => dolly.m_PathPosition, x => dolly.m_PathPosition = x, maxPath, transitionDuration).SetEase(Ease.InOutSine);
+        // Hedef: Eðer forward true ise MaxPos (son), false ise 0 (baþlangýç)
+        float targetPos = forward ? path.MaxPos : 0f;
+
+        // Mevcut pozisyondan hedef pozisyona git
+        var tween = DOTween.To(() => dolly.m_PathPosition,
+                   x => dolly.m_PathPosition = x,
+                   targetPos,
+                   duration)
+               .SetEase(Ease.InOutSine);
+
+        await tween.AsyncWaitForCompletion();
     }
 }

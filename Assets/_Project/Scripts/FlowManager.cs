@@ -13,8 +13,15 @@ public class FlowManager
     private LevelManager _levelManager;
     private ScoreManager _scoreManager;
     private SignalBus _signalBus;
+    private PlayerFacade _player;
 
-    public FlowManager(MenuManager menuManager, CameraManager cameraManager, BoardManager boardManager, LevelManager levelManager, ScoreManager scoreManager, SignalBus signalBus)
+    public FlowManager(MenuManager menuManager,
+        CameraManager cameraManager,
+        BoardManager boardManager,
+        LevelManager levelManager,
+        ScoreManager scoreManager,
+        SignalBus signalBus,
+        PlayerFacade player)
     {
         _menuManager = menuManager;
         _cameraManager = cameraManager;
@@ -22,6 +29,7 @@ public class FlowManager
         _levelManager = levelManager;
         _scoreManager = scoreManager;
         _signalBus = signalBus;
+        _player = player;
     }
     public void OnLevelInitializing() => LevelStartSequence().Forget();
     public void OnLevelCompleting() => LevelCompleteSequence().Forget();
@@ -29,37 +37,50 @@ public class FlowManager
     {
         _menuManager.ToggleMenuCanvas(false);
         _scoreManager.SetReachScore(_levelManager.ActiveLevelData.ReachScore);
-        _signalBus.Fire(new GameSignal.OnPlayerTeleportRequested(_boardManager.Data.GameStartPosition));
 
-        await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.INITIAL_DELAY));
+        await _player.Visual.Disappear(2f);
 
         _cameraManager.SwitchCamera(CameraType.Transition);
-        _cameraManager.OnTransitionStart();
 
-        await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.CAMERA_TRANSITION_TIME));
+        await _cameraManager.PlayPathTransition(true);
 
-        _boardManager.SetupBoard(_levelManager.ActiveLevelData).Forget();
-
-        await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.BOARD_SETUP_DELAY));
-
-        _menuManager.DisplayHealthBar();
+        _player.Hud.DisplayHealthBar(2f);
+        _player.Base.SetPosition(_boardManager.Data.GameStartPosition);
         _cameraManager.SwitchCamera(CameraType.Game);
 
-        await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.DISPLAY_HEALTH_DELAY));
+        await _player.Visual.Appear(2f);
 
-        _menuManager.AnimateHealthRefill();
+        _player.Hud.FillHealthBarEffect(2f);
         _menuManager.ToggleGameCanvas(true);
 
-        await UniTask.Delay(TimeSpan.FromSeconds(GameConst.Durations.GAMEPLAY_START_DELAY));
+        await _boardManager.SetupBoard(_levelManager.ActiveLevelData);
 
         _boardManager.InitialGoalGrid();
         _boardManager.StartLethalSequence();
 
         _signalBus.Fire(new GameSignal.OnLevelStarted());
+        //Camera Game Camera oldu -> Player Appear -> Board kurulacak -> Can görünecek -> Can fullenecek ve GameCanvas açýlacak -> Board için goal grid ve lethal
     }
 
     public async UniTask LevelCompleteSequence()
     {
         _cameraManager.SwitchCamera(CameraType.Victory);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+
+        _levelManager.OnLevelComplete();
+
+        await _player.Visual.Disappear(3f);
+
+        _cameraManager.SwitchCamera(CameraType.Transition);
+
+        await _cameraManager.PlayPathTransition(false);
+
+        _player.Base.SetPosition(_boardManager.Data.MenuPosition);
+        _cameraManager.SwitchCamera(CameraType.Menu);
+
+        await _player.Visual.Appear(3f);
+
+        _menuManager.ToggleMenuCanvas(true);
     }
 }

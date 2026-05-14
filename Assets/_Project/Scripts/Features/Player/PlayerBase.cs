@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,8 +71,7 @@ public class PlayerBase : MonoBehaviour
             _visual.Body.rotation = Quaternion.Slerp(_visual.Body.rotation, rotation, _data.RotationSpeed * Time.deltaTime);
         }
     }
-    public void AlignToMenuPose() => _visual.Body.rotation = Quaternion.Euler(_data.MenuPoseRotation);
-    public void AlignToVictoryPose() => _visual.Body.rotation = Quaternion.Euler(new Vector3(0f, 220f, 0f));
+ 
     public void CheckGrid()
     {
         int gridCount = Physics.OverlapSphereNonAlloc(_checkTransform.position, _data.CheckDistance, _results, _gridLayer);
@@ -112,6 +112,9 @@ public class PlayerBase : MonoBehaviour
 
         return direction.sqrMagnitude > 0.01f;
     }
+    public void AlignToMenuPose() => _visual.Body.rotation = Quaternion.Euler(_data.MenuPoseRotation);
+    public void AlignToVictoryPose() => _visual.Body.rotation = Quaternion.Euler(new Vector3(0f, 220f, 0f));
+    public void SetPosition(Vector3 position) => transform.position = position;
     public bool IsGrounded() => Physics.CheckSphere(_checkTransform.position, _data.CheckDistance, _groundLayer);
     public bool PressedJump() => _input.PressedJump();
     public Vector3 GetMovementDirection()

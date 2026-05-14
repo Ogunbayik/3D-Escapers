@@ -30,14 +30,6 @@ public class LevelManager : MonoBehaviour
         _levelIndex = _saveService.GetSavedLevelIndex();
         _activeLevelData = _allLevels[_levelIndex];
     }
-    private void OnEnable()
-    {
-        _signalBus.Subscribe<GameSignal.OnLevelCompleted>(OnLevelComplete);
-    }
-    private void OnDisable()
-    {
-        _signalBus.Unsubscribe<GameSignal.OnLevelCompleted>(OnLevelComplete);
-    }
     public void OnLevelComplete()
     {
         _levelIndex++;

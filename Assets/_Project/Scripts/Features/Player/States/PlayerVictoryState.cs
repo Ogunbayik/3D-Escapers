@@ -15,12 +15,13 @@ public class PlayerVictoryState : PlayerBaseState
     public override void EnterState()
     {
         AnimationController.PlayAnimation(GameConst.PlayerAnimation.IDLE_HASH, GameConst.AnimationTransition.QUICK_TRANSITION);
+
+        Player.AlignToVictoryPose();
+        Player.ResetMovement();
     }
     public override void Tick()
     {
         Player.ApplyGravity();
-
-        Player.ResetMovement();
 
         if (Player.IsGrounded() && !_hasVictorySequenceStarted)
             VictorySequence().Forget();
@@ -35,21 +36,15 @@ public class PlayerVictoryState : PlayerBaseState
 
         SetVictorySequenceStatus(true);
 
-        Player.AlignToVictoryPose();
+        //TODO Victory Animation deðiþtirilecek ( 1 saniye delay ile oynatýyoruz)
 
-        //3f Camera TransitionTime
-        await UniTask.Delay(System.TimeSpan.FromSeconds(3f));
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
 
-        //TODO Victory Animation deðiþtirilecek
         AnimationController.PlayAnimation(GameConst.PlayerAnimation.VICTORY_HASH, GameConst.AnimationTransition.QUICK_TRANSITION);
 
         await UniTask.WaitUntil(() => AnimationController.IsAnimationFinished(GameConst.PlayerAnimation.VICTORY_HASH));
 
         AnimationController.PlayAnimation(GameConst.PlayerAnimation.IDLE_HASH, GameConst.AnimationTransition.QUICK_TRANSITION);
-
-        //TODO 1F delay for dissolve animation
-        await UniTask.Delay(TimeSpan.FromSeconds(1f));
-
     }
     private void SetVictorySequenceStatus(bool isActive) => _hasVictorySequenceStarted = isActive;
 

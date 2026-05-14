@@ -67,6 +67,18 @@ public class PlayerVisual : MonoBehaviour
 
         AnimateDissolve(GameConst.ShaderProperties.DISSOLVE_APPEAR_VALUE, _dissolveDuration);
     }
+    public async UniTask Disappear(float duration)
+    {
+        AnimateDissolve(GameConst.ShaderProperties.DISSOLVE_DISAPPEAR_VALUE, duration);
+
+        await UniTask.Delay(System.TimeSpan.FromSeconds(duration));
+    }
+    public async UniTask Appear(float duration)
+    {
+        AnimateDissolve(GameConst.ShaderProperties.DISSOLVE_APPEAR_VALUE, duration);
+
+        await UniTask.Delay(System.TimeSpan.FromSeconds(duration));
+    }
     public void AnimateDissolve(float targetValue, float duration) => _meshRenderer.material.DOFloat(targetValue, DissolveAmountProp, duration);
 
 }
