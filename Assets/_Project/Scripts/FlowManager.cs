@@ -66,6 +66,11 @@ public class FlowManager
     {
         _cameraManager.SwitchCamera(CameraType.Victory);
 
+        _menuManager.TogglePlayerCanvas(false);
+        _menuManager.ToggleGameCanvas(false);
+
+        _boardManager.StopLethalSequence();
+
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
 
         _levelManager.OnLevelComplete();
@@ -79,8 +84,11 @@ public class FlowManager
         _player.Base.SetPosition(_boardManager.Data.MenuPosition);
         _cameraManager.SwitchCamera(CameraType.Menu);
 
+        _boardManager.ReturnAllCells();
+
         await _player.Visual.Appear(3f);
 
         _menuManager.ToggleMenuCanvas(true);
+        _menuManager.UpdateLevelText();
     }
 }

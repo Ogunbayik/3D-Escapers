@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Level Data", menuName = "Scriptable Object/Level Data")]
 public class LevelData : ScriptableObject
 {
+    [Header("Identity")]
+    [SerializeField] private int _ID;
     [Header("Board Dimensions")]
     [SerializeField] private int _width;
     [SerializeField] private int _height;
@@ -21,6 +23,7 @@ public class LevelData : ScriptableObject
     [Header("Lethal Groups")]
     [SerializeField] private List<CellGroup> _lethalGroups;
 
+    public int ID => _ID;
     public int Width => _width;
     public int Height => _height;
     public float Scale => _scale;

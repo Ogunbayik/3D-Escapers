@@ -20,6 +20,7 @@ public class BoardManager : MonoBehaviour
 
     public List<GridCell> _lethalGrids = new List<GridCell>();
     public List<GridCell> _allGridList = new List<GridCell>();
+    private List<GridCellView> _allGridViews = new List<GridCellView>();
 
     [Header("Visual Settings")]
     [SerializeField] private GridCellView _gridPrefab;
@@ -89,6 +90,8 @@ public class BoardManager : MonoBehaviour
                 _allGridList.Add(cell);
 
                 var grid = _gridPool.Spawn(_gridPool);
+                _allGridViews.Add(grid);
+                
                 var spawnPosition = new Vector3(j, _data.SpawnY, i);
 
                 grid.name = $"Grid[{j},{i}]";
@@ -104,6 +107,20 @@ public class BoardManager : MonoBehaviour
         _isSequenceActive = true;
         LethalSequence().Forget();
     }
+    public void StopLethalSequence() => _isSequenceActive = false;
+    public void ReturnAllCells()
+    {
+        foreach (var view in _allGridViews)
+            view.ReturnToPool();
+
+        foreach (var grid in _allGrid)
+        {
+            grid.CellType = GridType.Switchable;
+            grid.GridStatus = GridStatus.Safe;
+        }
+
+        _allGridViews.Clear();
+    }
     private async UniTask LethalSequence()
     {
         var token = this.GetCancellationTokenOnDestroy();
@@ -115,6 +132,7 @@ public class BoardManager : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(_activeLevelData.LethalDuration), cancellationToken: token);
         }
     }
+
     private async UniTask ProcessGoalReachedSequence()
     {
         ResetGoalGrid();

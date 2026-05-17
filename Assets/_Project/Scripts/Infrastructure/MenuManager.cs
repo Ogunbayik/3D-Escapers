@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private float _displayDuration;
     [SerializeField] private float _heartFullDuration;
 
-    private PlayerHUD _playerHUD;
+    private LevelData _levelData;
 
     [Inject]
     public void Construct(LevelManager levelManager, SignalBus signalBus)
@@ -37,21 +37,18 @@ public class MenuManager : MonoBehaviour
     }
     private void Initialize()
     {
-        _playerHUD = _playerCanvas.GetComponentInChildren<PlayerHUD>();
-
         var level = _levelManager.LevelIndex + 1;
         _levelDataText.text = level.ToString();
 
         ToggleMenuCanvas(true);
         ToggleGameCanvas(false);
     }
-    private void OnEnable() => _signalBus.Subscribe<GameSignal.OnLevelDataChanged>(UpdateLevelDataText);
-    private void OnDisable() => _signalBus.Unsubscribe<GameSignal.OnLevelDataChanged>(UpdateLevelDataText);
+    private void OnEnable() => _signalBus.Subscribe<GameSignal.OnLevelDataChanged>(UpdateLevelData);
+    private void OnDisable() => _signalBus.Unsubscribe<GameSignal.OnLevelDataChanged>(UpdateLevelData);
     private void OnLevelPreperation() => _signalBus.Fire(new GameSignal.OnLevelInitializing(_levelManager.ActiveLevelData));
     public void ToggleMenuCanvas(bool isActive) => _menuCanvas.gameObject.SetActive(isActive);
     public void ToggleGameCanvas(bool isActive) => _gameCanvas.gameObject.SetActive(isActive);
     public void TogglePlayerCanvas(bool isActive) => _playerCanvas.gameObject.SetActive(isActive);
-    public void AnimateHealthRefill() => _playerHUD.FillHealthBarEffect(_heartFullDuration);
-    public void DisplayHealthBar() => _playerHUD.DisplayHealthBar(_displayDuration);
-    public void UpdateLevelDataText(GameSignal.OnLevelDataChanged signal) => _levelDataText.text = signal.LevelIndex.ToString();
+    public void UpdateLevelData(GameSignal.OnLevelDataChanged signal) => _levelData = signal.LevelData;
+    public void UpdateLevelText() => _levelDataText.text = _levelData.ID.ToString();
 }
