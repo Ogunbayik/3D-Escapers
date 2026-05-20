@@ -132,7 +132,6 @@ public class BoardManager : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(_activeLevelData.LethalDuration), cancellationToken: token);
         }
     }
-
     private async UniTask ProcessGoalReachedSequence()
     {
         ResetGoalGrid();

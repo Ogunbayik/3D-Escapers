@@ -17,7 +17,7 @@ MonoBehaviour:
   _jumpHeight: 4
   _gravity: -9.81
   _gravityMultiplier: 3
-  _checkDistance: 0.1
+  _checkDistance: 0.39
   _maximumHealth: 5
   _invulnerableDuration: 1.25
   _menuPoseRotation: {x: 0, y: 215, z: 0}
