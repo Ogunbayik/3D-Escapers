@@ -43,5 +43,9 @@ public class PlayerInstaller : MonoInstaller
         Container.BindSignal<GameSignal.OnLevelCompleted>()
             .ToMethod<PlayerStateMachine>(x => x.OnPlayerVictory)
             .FromResolve();
+
+        Container.BindSignal<GameSignal.OnPlayerBackToMenu>()
+            .ToMethod<PlayerStateMachine>(x => x.OnPlayerMenu)
+            .FromResolve();
     }
 }

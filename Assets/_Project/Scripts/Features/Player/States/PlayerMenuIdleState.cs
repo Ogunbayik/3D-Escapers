@@ -16,6 +16,7 @@ public class PlayerMenuIdleState : PlayerBaseState
     public PlayerMenuIdleState(PlayerBase player, AnimationController animationController) : base(player, animationController) { }
     public override void EnterState()
     {
+        _isPlayingFidget = false;
         _countdownTimer = GameUtilis.GetRandomFloat(_minTime, _maxTime);
 
         Player.AlignToMenuPose();

@@ -20,7 +20,7 @@ public class BoardManager : MonoBehaviour
 
     public List<GridCell> _lethalGrids = new List<GridCell>();
     public List<GridCell> _allGridList = new List<GridCell>();
-    private List<GridCellView> _allGridViews = new List<GridCellView>();
+    public List<GridCellView> _allGridViews = new List<GridCellView>();
 
     [Header("Visual Settings")]
     [SerializeField] private GridCellView _gridPrefab;
@@ -112,14 +112,20 @@ public class BoardManager : MonoBehaviour
     {
         foreach (var view in _allGridViews)
             view.ReturnToPool();
-
-        foreach (var grid in _allGrid)
+    }
+    public void ClearBoard()
+    {
+        foreach (var gridView in _allGridViews)
         {
-            grid.CellType = GridType.Switchable;
-            grid.GridStatus = GridStatus.Safe;
+            _gridPool.Despawn(gridView);
         }
 
         _allGridViews.Clear();
+        _allGridList.Clear();
+        _lethalGrids.Clear();
+
+        _groupIndex = 0;
+        _allGrid = null;
     }
     private async UniTask LethalSequence()
     {

@@ -30,6 +30,7 @@ public class SignalInstaller : MonoInstaller
         //PlayerSignals
         Container.DeclareSignal<GameSignal.OnPlayerTeleportRequested>();
         Container.DeclareSignal<GameSignal.OnVictorySequenceStarted>();
+        Container.DeclareSignal<GameSignal.OnPlayerBackToMenu>();
         
     }
 }

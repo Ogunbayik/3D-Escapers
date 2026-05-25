@@ -20,7 +20,6 @@ public class PoolInstaller : MonoInstaller
             .UnderTransform(_vfxGroup);
 
         Container.BindMemoryPool<GridCellView, GridCellView.Pool>()
-            .WithInitialSize(_poolCount)
             .FromComponentInNewPrefab(_gridCell)
             .UnderTransform(_gridGroup);
 

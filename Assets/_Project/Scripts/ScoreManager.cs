@@ -22,6 +22,7 @@ public class ScoreManager
             _signalBus.Fire(new GameSignal.OnLevelScoreReached());
         }
     }
+    public void ResetScore() => _currentScore = 0;
     public void SetReachScore(int score) => _reachScore = score;
     public bool IsReachedScore() => _currentScore >= _reachScore;
 }

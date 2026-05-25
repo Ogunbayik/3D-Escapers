@@ -70,6 +70,8 @@ public class FlowManager
         _menuManager.ToggleGameCanvas(false);
 
         _boardManager.StopLethalSequence();
+        _boardManager.ClearBoard();
+        _scoreManager.ResetScore();
 
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
 
@@ -82,6 +84,8 @@ public class FlowManager
         await _cameraManager.PlayPathTransition(false);
 
         _player.Base.SetPosition(_boardManager.Data.MenuPosition);
+        _signalBus.Fire(new GameSignal.OnPlayerBackToMenu());
+
         _cameraManager.SwitchCamera(CameraType.Menu);
 
         _boardManager.ReturnAllCells();

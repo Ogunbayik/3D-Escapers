@@ -44,6 +44,10 @@ public class GameInstaller : MonoInstaller
             .FromResolve();
 
 
+        Container.BindSignal<GameSignal.OnLevelInitializing>()
+            .ToMethod<ScoreUIController>(x => x.ResetScore)
+            .FromResolve();
+
         Container.BindSignal<GameSignal.OnGameScoreChanged>()
             .ToMethod<ScoreUIController>(x => x.UpdateScoreText)
             .FromResolve();
